@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Bloom | 夜に咲く、あなたのための時間</title>
+    <meta name="description" content="忙しい夜も、これ1本で。Moon Bloomはオールインワンスプレーと導入美容液で、夜のスキンケアをシンプルに。7日間お試しサイズもご用意しています。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ==================== ヘッダー ==================== -->
+    <!-- <header>：ページの「顔」。ロゴとナビゲーション(メニュー)を入れる、意味のあるタグ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <!-- ロゴ部分 -->
+            <p class="logo">Moon Bloom</p>
+
+            <!-- <nav>：ナビゲーション(案内)であることを示すタグ -->
+            <nav class="header-nav" aria-label="サイト内ナビゲーション">
+                <!-- href="#spray"のように「#」から始まるリンクは、同じページ内の該当箇所まで移動するページ内リンク -->
+                <a href="#spray">商品紹介</a>
+                <a href="#trial">7日間お試し</a>
+                <a href="#contact">お問い合わせ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== FV(ファーストビュー) ==================== -->
+        <section class="fv" id="fv">
+            <div class="fv-inner">
+                <!-- Moon Bloomのロゴ(大きく表示) -->
+                <p class="fv-logo">Moon Bloom</p>
+
+                <!-- キャッチコピー。h1はページ全体で一番大事な見出しなので、1ページに1つだけ使う -->
+                <h1 class="fv-catch">
+                    夜に咲く<br>
+                    あなたのためのご褒美
+                </h1>
+
+                <!-- <hr>：区切り線。意味的に「ここで話題が変わる」ことを示すタグ -->
+                <hr class="fv-divider">
+
+                <p class="fv-sub">忙しい毎日でもほっと一息を</p>
+            </div>
+        </section>
+
+        <!-- ==================== 商品紹介①：オールインワンスプレー ==================== -->
+        <section class="product product-spray" id="spray">
+            <div class="product-inner">
+                <!-- キャッチコピー。h2はh1の次に大事な見出し -->
+                <h2 class="product-catch">
+                    忙しい夜も、<br>
+                    シュッとひと吹き
+                </h2>
+                <p class="product-label">－ALL IN ONE SPRAY－</p>
+                <!-- 商品の特長を3つ、リスト(ul/li)で表現。箇条書きは意味的にリストタグを使うのが正しい -->
+                <ul class="product-points">
+                    <li>
+                        <!-- アイコンは装飾なので aria-hidden="true" で読み上げソフトから隠す -->
+                        <span class="icon" aria-hidden="true">⏱</span>
+                        時短ケア
+                    </li>
+                    <li>
+                        <span class="icon" aria-hidden="true">💧</span>
+                        ベタつかない
+                    </li>
+                    <li>
+                        <span class="icon" aria-hidden="true">🍊</span>
+                        落ち着く柑橘系の匂い
+                    </li>
+                </ul>
+
+                <!-- 画像タグには必ずalt属性(代替テキスト)をつける -->
+                <img src="images/spray-bottle.png" alt="Moon Bloom オールインワンスプレーのボトル" class="product-image"
+                    loading="lazy">
+            </div>
+
+            <!-- 成分紹介エリア -->
+            <div class="ingredients">
+                <h3 class="ingredients-title">肌の角質層まで届く美容成分</h3>
+
+                <ul class="ingredients-list">
+                    <li>
+                        <img src="images/ingredient-hyaluronic.png" alt="ヒアルロン酸のイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">ヒアルロン酸</p>
+                        <p class="ingredient-effect">うるおい</p>
+                    </li>
+                    <li>
+                        <img src="images/ingredient-yuzu.png" alt="ユズのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">ユズ果実エキス</p>
+                        <p class="ingredient-effect">バリア機能サポート</p>
+                    </li>
+                    <li>
+                        <img src="images/ingredient-vitaminc.png" alt="ビタミンCのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">ビタミンC誘導体</p>
+                        <p class="ingredient-effect">透明感</p>
+                    </li>
+                    <li>
+                        <img src="images/ingredient-ceramide.png" alt="セラミドのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">セラミド</p>
+                        <p class="ingredient-effect">肌を整える</p>
+                    </li>
+                </ul>
+                <p class="ingredients-note">柑橘系の香りが、一日の疲れをそっとほどいてくれる、そんな夜のご褒美時間を。</p>
+            </div>
+
+        </section>
+
+        <!-- ==================== 商品紹介②：導入美容液 ==================== -->
+        <section class="product product-serum" id="serum">
+            <div class="product-inner">
+                <h2 class="product-catch">もう一滴の潤いを</h2>
+                <img src="images/serum-bottle.png" alt="Moon Bloom 導入美容液のボトル" class="product-image">
+
+                <ul class="ingredients-list ingredients-list--serum">
+                    <li>
+                        <img src="images/ingredient-squalane.png" alt="スクワランのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">スクワラン</p>
+                    </li>
+                    <li>
+                        <img src="images/ingredient-sakura.png" alt="桜由来エキスのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">桜由来エキス</p>
+                    </li>
+                    <li>
+                        <img src="images/ingredient-royaljelly.png" alt="ローヤルゼリーエキスのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">ローヤルゼリーエキス</p>
+                    </li>
+                    <li>
+                        <img src="images/ingredient-niacinamide.png" alt="ナイアシンアミドのイメージ写真" class="ingredient-photo">
+                        <p class="ingredient-name">ナイアシンアミド</p>
+                    </li>
+                </ul>
+
+                <!-- 成分説明は説明リスト(dl)で。用語とその説明の組み合わせに向いたタグ -->
+                <dl class="ingredients-description">
+                    <div>
+                        <dt>ナイアシンアミド</dt>
+                        <dd>整肌・透明感</dd>
+                    </div>
+                    <div>
+                        <dt>スクワラン</dt>
+                        <dd>浸透をサポート、肌を柔らかく</dd>
+                    </div>
+                    <div>
+                        <dt>桜由来エキス</dt>
+                        <dd>保湿・血行促進</dd>
+                    </div>
+                    <div>
+                        <dt>ローヤルゼリーエキス</dt>
+                        <dd>うるおい・ハリ</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ==================== 7日間お試し ==================== -->
+        <section class="trial" id="trial">
+            <!-- 左上に重ねて表示する丸いバッジ(位置はCSSで調整する) -->
+            <div class="trial-badge">7日間<br>お試し</div>
+            <div class="trial-inner">
+                <p class="trial-brand">MOON BLOOM</p>
+                <p class="trial-brand-sub">夜に咲く、うるおいの花。</p>
+                <img src="images/trial-set.png" alt="Moon Bloom 7日間お試しセット(スプレーと美容液)" class="trial-image">
+                <div class="trial-price">
+                    <p class="trial-price-original">通常価格 ¥7,000相当</p>
+                    <p class="trial-price-label">7日間お試し価格</p>
+                    <p class="trial-price-value">¥980<span>(税込・送料無料)</span></p>
+                </div>
+
+                <!-- 押すとフォームが開くボタン(開閉の動きは、あとでJSで作る) -->
+                <button type="button" class="accordion-trigger" id="trial-form-trigger" aria-expanded="false"
+                    aria-controls="trial-form-panel">
+                    7日間お試しに申し込む
+                    <span class="accordion-arrow" aria-hidden="true">→</span>
+                </button>
+                <!-- hidden属性:最初は非表示。JSで開くときにこれを外す -->
+                <div class="accordion-panel" id="trial-form-panel" hidden>
+                    <!--
+                【フォームのセキュリティについて】
+                ・method="post":入力内容をURLに表示させず、見えない形で送信する
+                (GETだとURLに名前や住所が出てしまうため)
+                ・required:未入力のまま送信できないようにする(最低限の入力チェック)
+                ・type="tel":電話番号向けの入力欄にする(スマホでは数字キーボードが出る)
+                ・autocomplete:ブラウザの自動入力に「ここは名前欄」などと伝え、入力ミスを減らす
+                ・本物の送信先サーバーを用意するときは、必ずHTTPS(暗号化通信)の送信先にする
+
+                【将来バックエンドと繋ぐときに必要になる3大対策】(Week3・4で学習)
+                ① XSS対策:受け取った名前や住所をそのまま画面に表示せず、htmlspecialchars()を通す
+                ② SQLインジェクション対策:DB保存はプリペアドステートメントを使う
+                ③ CSRF対策:フォーム内に隠しトークン(hidden input)を入れて、なりすまし送信を防ぐ
+                -->
+                    <form class="trial-form" action="#" method="post">
+                        <label for="trial-name">お名前</label>
+                        <input type="text" id="trial-name" name="name" autocomplete="name" required>
+
+                        <label for="trial-address">住所</label>
+                        <input type="text" id="trial-address" name="address" autocomplete="street-address" required>
+
+                        <label for="trial-tel">連絡先(電話番号)</label>
+                        <input type="tel" id="trial-tel" name="tel" autocomplete="tel" required>
+
+                        <button type="submit" class="form-submit">申し込む</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== よくある質問(FAQ) ==================== -->
+        <section class="faq" id="faq">
+            <h2 class="faq-title">よくある質問</h2>
+
+            <!-- FAQを1つのリスト(ul)として扱う。1項目=1つの質問カード(li) -->
+            <ul class="faq-list">
+                <li class="faq-item">
+                    <!-- 質問ボタン:押すと答えが開く(動きはJSで作る) -->
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                        配送はどれくらいかかりますか?
+                        <span class="faq-icon" aria-hidden="true">＋</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1" hidden>
+                        <p>ご注文から2〜3営業日以内に発送いたします。</p>
+                    </div>
+                </li>
+                <li class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                        毎月定期で配送されますか?
+                        <span class="faq-icon" aria-hidden="true">＋</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2" hidden>
+                        <p>いいえ、自動継続ではございません。気に入っていただけましたら、あらためてご注文ください。</p>
+                    </div>
+                </li>
+
+                <li class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                        返品・交換はできますか?
+                        <span class="faq-icon" aria-hidden="true">＋</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3" hidden>
+                        <p>商品の性質上、開封後の返品はお受けできませんが、不良品の場合は交換いたします。</p>
+                    </div>
+                </li>
+
+                <li class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                        香りの強さはどのくらいですか?
+                        <span class="faq-icon" aria-hidden="true">＋</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-4" hidden>
+                        <p>柑橘系の優しい香りで、リラックスできる程度の強さに調整しています。</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- ==================== フッター ==================== -->
+    <!-- <footer>:ページの末尾。お問い合わせや著作権表示をまとめる意味のあるタグ -->
+    <footer class="site-footer" id="contact">
+        <button type="button" class="accordion-trigger accordion-trigger--footer" id="contact-trigger"
+            aria-expanded="false" aria-controls="contact-panel">
+            お問い合わせ
+        </button>
+        <div class="accordion-panel" id="contact-panel" hidden>
+            <!--
+        お問い合わせフォームも申し込みフォームと同じ考え方。
+        ・method="post"でURLに内容を残さない
+        ・type="email":ブラウザが「@が入っているか」などを自動チェックしてくれる
+        ・本番ではここにもCSRFトークン(隠しinput)を追加する想定
+      -->
+            <form class="contact-form" action="#" method="post">
+                <label for="contact-name">お名前</label>
+                <input type="text" id="contact-name" name="name" autocomplete="name" required>
+
+                <label for="contact-email">メールアドレス</label>
+                <input type="email" id="contact-email" name="email" autocomplete="email" required>
+
+                <label for="contact-message">お問い合わせ内容</label>
+                <textarea id="contact-message" name="message" rows="4" required></textarea>
+
+                <button type="submit" class="form-submit">送信する</button>
+            </form>
+        </div>
+        <p class="footer-copyright">© Moon Bloom</p>
+    </footer>
+    <!--
+    JSファイルは<body>の一番最後で読み込むのが基本。
+    理由:HTMLを先に全部読み込んでおかないと、JSが「操作したい要素」を
+    まだ見つけられず、エラーになることがあるため。
+    (JSの回で js/script.js を作って、このコメントを外す)
+  -->
+    <!-- <script src="js/script.js"></script> -->
+</body>
+
+</html>
