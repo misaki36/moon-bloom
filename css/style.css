@@ -1,0 +1,788 @@
+/* ==========================================================
+   Moon Bloom - PC版スタイル
+   読み込み元: index.html の <head> 内 <link rel="stylesheet" href="css/style.css">
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   1. CSS変数（色・フォント・幅をここで一括管理）
+   ここを書き換えるだけで、サイト全体の色が変わる
+   ---------------------------------------------------------- */
+:root {
+    /* 色：先生のフィードバック（紺・紫・くすみ系）に合わせたパレット */
+    --color-navy: #1A1B3A;
+    --color-purple: #3B2A55;
+    --color-pink: #F8C8D8;
+    --color-sage: #A8C3A0;
+    --color-gold: #FFD966;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-ingredient-bg: #F9ECFC;
+
+    /* ボタンのグラデーション（左から右へ紫が変化） */
+    --gradient-button: linear-gradient(90deg, #6F1ABC 29%, #AC6CE7 65%);
+
+    /* フォントは2種類だけ：日本語は Shippori Mincho、英語・ロゴは Cormorant Garamond */
+    --font-jp: "Shippori Mincho", serif;
+    --font-en: "Cormorant Garamond", serif;
+
+    /* 中身の最大幅（横に広がりすぎないように） */
+    --content-width: 1000px;
+}
+
+/* ----------------------------------------------------------
+   2. リセットCSS
+   ブラウザが最初から付けている余白や見た目を一度まっさらにする
+   ---------------------------------------------------------- */
+
+/* すべての要素に適用：余白をゼロに、幅の計算方法を統一 */
+* {
+    margin: 0;
+    padding: 0;
+    /* border-box：枠線や余白を含めた幅で大きさを決める（レイアウトが崩れにくい） */
+    box-sizing: border-box;
+}
+
+/* ページ内リンク（#spray など）をスッと滑らかにスクロールさせる */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 画像：親の幅からはみ出さない。下に出る謎の隙間も消す */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* リンク：青い下線をやめて、周りの文字色を引き継ぐ */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* リスト（ul）の「・」を消す。必要なときだけ後で付け直す */
+ul {
+    list-style: none;
+}
+
+/* ボタンとフォーム部品：ブラウザ標準の別フォントをやめて、周りのフォントを引き継ぐ */
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+/* ----------------------------------------------------------
+   3. body（ページ全体の基本）
+   ---------------------------------------------------------- */
+body {
+    /* 日本語フォントを基本にする（変数を使うときは var() で包む） */
+    font-family: var(--font-jp);
+    /* ページ全体の背景は紺色、文字は白 */
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    /* 行間：文字サイズの1.8倍。ゆったり読めて高級感が出る */
+    line-height: 1.8;
+        /* ページ全体の背景：Figmaの桜とシャボン玉の背景を敷く
+       background-color の紺は、画像が読み込めないときの保険として残す */
+    background-image: url("../images/bg-page.png");
+    /* cover：画面いっぱいに広げる。中央上を基準に見せる */
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+/* ----------------------------------------------------------
+   3-2. ページの白い枠（<main> タグ）
+   Figma の中央にある白い縦長カラム。この中にカードが縦に並ぶ
+   ---------------------------------------------------------- */
+main {
+    /* 横幅は最大1000px、真ん中に置く */
+    max-width: var(--content-width);
+    margin: 0 auto;
+    /* 枠の色は白 */
+    background-color: var(--color-white);
+    /* 枠の内側に8pxの余白（カードの周りの白いふち） */
+    padding: 8px;
+    /* 中のセクション（カード）を縦に並べる */
+    display: flex;
+    flex-direction: column;
+    /* カードとカードの間に8pxのすき間 */
+    gap: 8px;
+}
+
+/* ----------------------------------------------------------
+   4. ヘッダー
+   index.html の <header class="site-header"> の見た目
+   ---------------------------------------------------------- */
+
+/* ヘッダー全体：背景を白にする */
+.site-header {
+    background-color: var(--color-white);
+        /* 白い枠（main）と同じ幅にして、枠の一番上につなげる */
+    max-width: var(--content-width);
+    /* 上に24pxあけて背景を少し見せ、左右は auto で中央に */
+    margin: 24px auto 0;
+    /* 角丸：左上・右上・右下・左下の順。上の2つだけ丸くする */
+    border-radius: 12px 12px 0 0;
+}
+
+/* ヘッダーの中身（ロゴとナビを横並びにする箱） */
+.header-inner {
+    /* 幅は最大1000pxまで */
+    max-width: var(--content-width);
+    /* 左右の margin を auto にすると、箱が真ん中に寄る */
+    margin: 0 auto;
+    /* 上下16px、左右24pxの内側の余白 */
+    padding: 16px 24px;
+    /* 子要素（ロゴとナビ）を横並びにする */
+    display: flex;
+    /* ロゴは左端、ナビは右端に離して置く */
+    justify-content: space-between;
+    /* 縦方向は真ん中にそろえる */
+    align-items: center;
+}
+
+/* ロゴ：英語フォントで黒 */
+.logo {
+    font-family: var(--font-en);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-black);
+    /* 文字と文字の間を少し広げて上品に */
+    letter-spacing: 0.08em;
+}
+
+/* ナビ：リンク3つを横並びにする */
+.header-nav {
+    display: flex;
+    /* リンク同士の間隔 */
+    gap: 32px;
+}
+
+/* ナビの中のリンク（.header-nav の中の a だけに効く） */
+.header-nav a {
+    font-size: 14px;
+    color: var(--color-black);
+    /* 色や透明度の変化を0.2秒かけて滑らかに */
+    transition: opacity 0.2s;
+}
+
+/* マウスを乗せたとき（hover）に、少し薄くする */
+.header-nav a:hover {
+    opacity: 0.6;
+}
+
+/* ----------------------------------------------------------
+   5. FV（ファーストビュー）
+   index.html の <section class="fv"> の見た目
+   ---------------------------------------------------------- */
+
+/* FV全体：背景に画像を敷いて、中身を左ぞろえにする */
+.fv {
+    /* ../ は「ひとつ上のフォルダへ戻る」。style.css は css フォルダの中にあるので、
+       いったん外に出てから images フォルダの画像を探す */
+    background-image: url("../images/fv-background.png");
+    /* cover：画像を余白なく全面に広げる */
+    background-size: cover;
+    /* 画像の真ん中を基準に見せる */
+    background-position: center;
+    /* 上下に80pxの余白、左右は0 */
+    padding: 80px 0;
+    /* 中の文字をすべて左ぞろえにする */
+    text-align: left;
+    /* 角を半径12pxの円の丸みにする */
+    border-radius: 12px;
+}
+
+/* FVの中身の箱：幅を制限して中央に置く */
+.fv-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ロゴ文字：英語フォントで大きく */
+.fv-logo {
+    font-family: var(--font-en);
+    font-size: 60px;
+    font-weight: 500;
+    /* 文字間を広げて高級感を出す */
+    letter-spacing: 0.1em;
+}
+
+/* キャッチコピー（h1）：日本語フォントで大きく */
+.fv-catch {
+    font-size: 40px;
+    /* h1 は太字が初期値なので、細めに直す */
+    font-weight: 500;
+    /* 2行になるので、行間は少しゆったり */
+    line-height: 1.5;
+    /* ロゴとの間に24pxあける */
+    margin-top: 24px;
+}
+
+/* 区切り線（hr）：細いピンクの線にする */
+.fv-divider {
+    width: 140px;
+    /* hr の初期の枠線を消して、上の線だけ細く引く */
+    border: none;
+    border-top: 1px solid var(--color-pink);
+    /* 上下32px、左に置かれる */
+    margin: 32px 0;
+}
+
+/* サブコピー */
+.fv-sub {
+    font-size: 18px;
+}
+
+/* ----------------------------------------------------------
+   6. 商品紹介（スプレー・美容液で共通の土台）
+   index.html の <section class="product ..."> の見た目
+   ---------------------------------------------------------- */
+
+/* section：中のカードを縦に並べる入れ物（section自体に色は付けない） */
+.product {
+    display: flex;
+    flex-direction: column;
+    /* 紺のカードと、次の成分カードの間のすき間 */
+    gap: 8px;
+}
+
+/* カード本体（商品の文章と瓶が入る箱） */
+.product-inner {
+    /* 子の img を置くときの「基準点」にする（下の解説を読んでね） */
+    position: relative;
+    /* 上下64px、左右48pxの内側の余白 */
+    padding: 64px 48px;
+    /* 角を丸くする */
+    border-radius: 12px;
+    /* 瓶が入る高さを確保する */
+    min-height: 480px;
+}
+
+/* スプレーのカードだけ、背景を紺にする
+   （.product-spray の中の .product-inner、という意味） */
+.product-spray .product-inner {
+    background-color: var(--color-navy);
+}
+
+/* キャッチコピー（h2） */
+.product-catch {
+    font-size: 32px;
+    /* h2 の太字を細めに */
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* 英語の小さなラベル */
+.product-label {
+    font-family: var(--font-en);
+    font-size: 14px;
+    /* 英字は文字間を広げるときれいに見える */
+    letter-spacing: 0.2em;
+    margin-top: 8px;
+}
+
+/* 特長リスト：キャッチコピーとの間をあける */
+.product-points {
+    margin-top: 40px;
+}
+
+/* 特長の1行：アイコンと文字を横に並べる */
+.product-points li {
+    display: flex;
+    /* 縦方向は真ん中にそろえる */
+    align-items: center;
+    /* アイコンと文字の間 */
+    gap: 12px;
+    padding: 12px 0;
+}
+
+/* 商品の画像：カードの中で自由に置く */
+.product-image {
+    /* 基準点（.product-inner）の中で、位置を自由に決められる */
+    position: absolute;
+    /* 基準点の一番下にくっつける */
+    bottom: 0;
+    width: 300px;
+}
+
+/* スプレー瓶は、右端から48pxの位置に置く */
+.product-spray .product-image {
+    right: 48px;
+}
+
+/* ----------------------------------------------------------
+   7. 成分カード（うす紫のカード）
+   index.html の <div class="ingredients"> の見た目
+   ---------------------------------------------------------- */
+
+/* カード全体：うす紫の背景、濃い紫の文字 */
+.ingredients {
+    background-color: var(--color-ingredient-bg);
+    /* うす紫の背景に、白文字は読めないので、濃い紫に変える */
+    color: var(--color-purple);
+    border-radius: 12px;
+    padding: 40px 48px;
+}
+
+/* カードの見出し（h3） */
+.ingredients-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* 成分リスト：2列×2段に並べる（ul に書く。li は子として自動で並ぶ） */
+.ingredients-list {
+    display: grid;
+    /* 同じ幅の列を2つ作る（1fr＝余ったスペースを1つ分） */
+    grid-template-columns: repeat(2, 1fr);
+    /* すき間：縦24px、横16pxの順 */
+    gap: 24px 16px;
+    /* 並べる範囲の最大幅を決めて、中央に置く */
+    max-width: 520px;
+    margin: 32px auto 0;
+}
+
+/* 成分1つ分（写真・成分名・効果）：中央ぞろえ */
+.ingredients-list li {
+    text-align: center;
+}
+
+/* 成分の写真：丸く切り抜く */
+.ingredient-photo {
+    width: 120px;
+    height: 120px;
+    /* 50% にすると、正方形が完全な円になる */
+    border-radius: 50%;
+    /* 縦横比を保ったまま、円の中いっぱいに表示（はみ出しは切れる） */
+    object-fit: cover;
+    /* display:block の画像を、左右 auto で中央に置く */
+    margin: 0 auto;
+}
+
+/* 成分名 */
+.ingredient-name {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* 成分の効果（小さめ） */
+.ingredient-effect {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* カード下の一言 */
+.ingredients-note {
+    margin-top: 24px;
+    font-size: 14px;
+}
+
+/* ----------------------------------------------------------
+   8. 美容液のカード
+   index.html の <section class="product product-serum"> の見た目
+   ※ 共通の .product-inner を土台にして、美容液だけ違う所を上書きする
+   ---------------------------------------------------------- */
+
+/* カード本体：紫のグラデーション背景＋2列のグリッド */
+.product-serum .product-inner {
+    /* 上から下へ、うす紫→濃い紫に変化する背景 */
+    background: linear-gradient(180deg, #C6B5E6 0%, #A94FCB 100%);
+    /* 2列のグリッド（左：瓶、右：成分写真） */
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    /* すき間：縦24px、横32px */
+    gap: 24px 32px;
+    /* スプレーで決めた「最低480px」は、美容液では不要なので解除する */
+    min-height: auto;
+}
+
+/* キャッチコピー：2列ぶんの幅をぜんぶ使う（1列目から最後の列まで） */
+.product-serum .product-catch {
+    grid-column: 1 / -1;
+}
+
+/* 瓶の画像：共通ルールの absolute をやめて、グリッドの中に普通に置く */
+.product-serum .product-image {
+    /* static＝位置の指定なし（通常の並び方に戻す） */
+    position: static;
+    width: 220px;
+    /* 左の列の真ん中に置く */
+    margin: 0 auto;
+}
+
+/* 成分の写真リスト：成分カードで決めた余白や最大幅を取り消して、列にぴったり入れる */
+.ingredients-list--serum {
+    max-width: none;
+    margin: 0;
+    /* うす紫〜濃い紫の背景に合う、濃い紫の文字 */
+    color: var(--color-purple);
+}
+
+/* 成分の説明カード：うす紫の箱。2列ぶんの幅を使う */
+.ingredients-description {
+    grid-column: 1 / -1;
+    background-color: var(--color-ingredient-bg);
+    color: var(--color-purple);
+    border-radius: 12px;
+    padding: 24px 32px;
+}
+
+/* 説明1行分（成分名＋効果）：横に並べて、入りきらなければ折り返す */
+.ingredients-description div {
+    display: flex;
+    flex-wrap: wrap;
+    /* 文字の下端をそろえる */
+    align-items: baseline;
+    gap: 4px 8px;
+    padding: 8px 0;
+}
+
+/* 成分名（dt） */
+.ingredients-description dt {
+    font-weight: 500;
+}
+
+/* 効果（dd） */
+.ingredients-description dd {
+    font-size: 14px;
+}
+
+/* ----------------------------------------------------------
+   9. 7日間お試し
+   index.html の <section class="trial"> の見た目
+   ---------------------------------------------------------- */
+
+/* セクション全体：バッジを置く「基準点」にして、文字は黒（白い背景に載るため） */
+.trial {
+    position: relative;
+    color: var(--color-black);
+}
+
+/* 丸い「7日間お試し」バッジ：画像の左上に重ねる */
+.trial-badge {
+    /* 基準点（.trial）の中で、位置を自由に決める */
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 100px;
+    height: 100px;
+    /* 50% で円にする */
+    border-radius: 50%;
+    /* シャボン玉の画像を丸く敷く。画像が読めないときの保険に半透明の白も指定 */
+    background-color: rgba(255, 255, 255, 0.2);
+    background-image: url("../images/syabondama.png");
+    background-size: cover;
+    background-position: center;
+    /* 中の文字を、縦も横も真ん中にそろえる */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-white);
+    font-size: 16px;
+    line-height: 1.3;
+    /* 明るいシャボン玉の上でも白文字が読めるように、濃い紫の影を付ける */
+    text-shadow: 0 0 6px var(--color-purple);
+}
+
+/* お試しの中身：画像は横いっぱい、下に「価格」と「ボタン」を横並び */
+.trial-inner {
+    display: grid;
+    /* 左：価格（残り全部）／右：ボタン（中身の幅ぶんだけ） */
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    /* すき間：縦24px、横32px */
+    gap: 24px 32px;
+}
+
+/* お試しセットの画像：2列ぶんの幅を全部使う */
+.trial-image {
+    grid-column: 1 / -1;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* 価格エリア：左右に少し余白 */
+.trial-price {
+    padding: 0 16px;
+}
+
+/* 通常価格：小さく、取り消し線を引く */
+.trial-price-original {
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+/* 「7日間お試し価格」のラベル */
+.trial-price-label {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* 980円：大きく目立たせる */
+.trial-price-value {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* 「(税込・送料無料)」は span なので、価格の中で小さく戻す */
+.trial-price-value span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* ----------------------------------------------------------
+   10. アコーディオンのボタン（お試し・フッター共通）
+   ---------------------------------------------------------- */
+.accordion-trigger {
+    /* 紫のグラデーション（:root で決めた変数） */
+    background: var(--gradient-button);
+    color: var(--color-white);
+    /* ボタンの標準の枠線を消す */
+    border: none;
+    /* 999px にすると、左右が半円のカプセル型になる */
+    border-radius: 999px;
+    padding: 16px 32px;
+    font-size: 18px;
+    /* マウスを乗せると指のマークになる（押せる合図） */
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+/* マウスを乗せたとき：少し薄くする */
+.accordion-trigger:hover {
+    opacity: 0.85;
+}
+
+/* キーボード（Tabキー）で選ばれたとき：金色の枠線を出して、今どこにいるか分かるように */
+.accordion-trigger:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+}
+
+/* ボタンの中の矢印「→」：文字との間をあける */
+.accordion-arrow {
+    margin-left: 8px;
+}
+
+/* ----------------------------------------------------------
+   11. フォーム（お試し申込・お問い合わせ共通）
+   ※ .accordion-panel には display を書かない。
+     書くと、HTML の hidden（最初は非表示）が効かなくなるため
+   ---------------------------------------------------------- */
+
+/* 開く箱：紫のグラデーションのカード */
+.accordion-panel {
+    /* お試しセクションのグリッドの中では、2列ぶんの幅を使う */
+    grid-column: 1 / -1;
+    background: var(--gradient-button);
+    color: var(--color-white);
+    border-radius: 12px;
+    padding: 24px 32px;
+}
+
+/* フォーム本体：横に広がりすぎないよう最大幅を決めて、中央に置く */
+.trial-form,
+.contact-form {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* 項目名（label）：入力欄の上に1行で出す */
+.trial-form label,
+.contact-form label {
+    display: block;
+    font-size: 14px;
+    /* 上に16px、下に4px */
+    margin: 16px 0 4px;
+}
+
+/* 一番上の label だけは、上の余白をなくす */
+.trial-form label:first-of-type,
+.contact-form label:first-of-type {
+    margin-top: 0;
+}
+
+/* 入力欄（1行入力と、複数行のテキストエリア） */
+.trial-form input,
+.contact-form input,
+.contact-form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    /* うす紫の背景に、濃い紫の文字 */
+    background-color: var(--color-ingredient-bg);
+    color: var(--color-purple);
+    /* 16px以上にすると、iPhoneで入力時に画面が勝手に拡大されない */
+    font-size: 16px;
+}
+
+/* テキストエリアは、縦方向にだけ大きさを変えられるようにする */
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* 入力欄を選んだとき：金色の枠線で、今どこを入力中か分かるように */
+.trial-form input:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+}
+
+/* 送信ボタン：白いカプセル型 */
+.form-submit {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-white);
+    color: var(--color-purple);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.form-submit:hover {
+    opacity: 0.85;
+}
+
+.form-submit:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+}
+
+/* ----------------------------------------------------------
+   12. よくある質問（FAQ）
+   index.html の <section class="faq"> の見た目
+   ---------------------------------------------------------- */
+
+/* セクション全体：白い枠の上に載るので、文字は黒 */
+.faq {
+    color: var(--color-black);
+    padding: 24px 16px 16px;
+}
+
+/* 見出し：文字の右に、細い線を引く */
+.faq-title {
+    /* 文字と線を横に並べる */
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-purple);
+}
+
+/* 見出しの後ろに、HTMLに書かずに「線」を足す（疑似要素） */
+.faq-title::after {
+    /* ::after を使うときは、content を必ず書く（中身は空でOK） */
+    content: "";
+    /* 残りの幅を全部使って、右端まで伸ばす */
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-purple);
+}
+
+/* 質問のリスト：2列×2段 */
+.faq-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 16px;
+    margin-top: 24px;
+    /* 1つ開いても、隣のカードの高さは変えない */
+    align-items: start;
+}
+
+/* 質問ボタン：グレーのカプセル。質問は左、「＋」は右端 */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 999px;
+    /* Figmaのグレー */
+    background-color: #D2D0D6;
+    color: var(--color-black);
+    font-size: 14px;
+    /* ボタンの文字は、初期だと中央ぞろえなので左に */
+    text-align: left;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.faq-question:hover {
+    opacity: 0.8;
+}
+
+.faq-question:focus-visible {
+    outline: 3px solid var(--color-purple);
+    outline-offset: 3px;
+}
+
+/* 「＋」のマーク：文字との間をあける */
+.faq-icon {
+    margin-left: 12px;
+    font-size: 18px;
+}
+
+/* 答えの箱（※ display は書かない。hidden で隠すため） */
+.faq-answer {
+    margin-top: 8px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    background-color: #E8E6EC;
+    font-size: 14px;
+}
+
+/* ----------------------------------------------------------
+   13. フッター
+   index.html の <footer class="site-footer"> の見た目
+   ---------------------------------------------------------- */
+
+/* フッター全体：白い枠と同じ幅にして、中の文字やボタンを中央に寄せる */
+.site-footer {
+    max-width: var(--content-width);
+    /* 上に24px、左右は中央、下に0 */
+    margin: 24px auto 0;
+    padding: 0 8px 24px;
+    /* 中のボタンやコピーライトを、中央ぞろえにする */
+    text-align: center;
+}
+
+/* お問い合わせボタン：共通ボタン（.accordion-trigger）を、小さめに上書きする */
+.accordion-trigger--footer {
+    padding: 8px 24px;
+    font-size: 14px;
+}
+
+/* フッターの中のフォームカード：幅を狭めて中央に置く */
+.site-footer .accordion-panel {
+    max-width: 600px;
+    /* 上に12px、左右は中央、下に0 */
+    margin: 12px auto 0;
+    /* フッターで中央ぞろえにした文字を、フォームの中では左ぞろえに戻す */
+    text-align: left;
+}
+
+/* コピーライト：小さく、中央ぞろえ */
+.footer-copyright {
+    margin-top: 16px;
+    font-size: 12px;
+    text-align: center;
+    /* 背景画像の上でも読めるように、濃い影を付ける */
+    text-shadow: 0 0 4px var(--color-navy);
+}
