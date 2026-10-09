@@ -304,6 +304,28 @@ main {
     padding: 12px 0;
 }
 
+/* ===== スプレーの特長アイコン(白い線のアイコン) ===== */
+.product-points .icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;            /* 横並びの中でつぶれないように固定 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-points li:nth-child(1) .icon {
+    background-image: url("../images/icon-clock.svg");   /* 時計 */
+}
+
+.product-points li:nth-child(2) .icon {
+    background-image: url("../images/icon-drop.svg");    /* しずく */
+}
+
+.product-points li:nth-child(3) .icon {
+    background-image: url("../images/icon-citrus.svg");  /* 柑橘 */
+}
+
 /* 商品の画像：カードの中で自由に置く */
 .product-image {
     /* 基準点（.product-inner）の中で、位置を自由に決められる */
