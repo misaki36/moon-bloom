@@ -181,7 +181,12 @@ main {
 .fv {
     /* ../ は「ひとつ上のフォルダへ戻る」。style.css は css フォルダの中にあるので、
        いったん外に出てから images フォルダの画像を探す */
-    background-image: url("../images/fv-background.png");
+        /* 背景を2枚重ねる：先に書いた方が上に載る。
+       ①上：左の濃い紺から、右に向かって透明になるもや（文字を読みやすくする）
+       ②下：月の画像 */
+    background-image:
+        linear-gradient(90deg, rgba(26, 27, 58, 0.75) 0%, rgba(26, 27, 58, 0) 65%),
+        url("../images/fv-background.png");
     /* cover：画像を余白なく全面に広げる */
     background-size: cover;
     /* 画像の真ん中を基準に見せる */
@@ -308,10 +313,58 @@ main {
     width: 300px;
 }
 
-/* スプレー瓶は、右端から48pxの位置に置く */
+/* スプレーは、右端から48pxの位置に置く */
 .product-spray .product-image {
-    right: 48px;
+    /* 時計回りにかたむける（Figmaの角度に合わせる） */
+    transform: rotate(-15deg);
+    position: absolute;     /* 流れから外して、好きな場所に置く */
+    right: -9px;           /* 右からの位置 */
+    bottom: 47px;           /* 下からの位置 */
+    z-index: 2;     /* 桜(0)より大きい数字 = 手前に出る */
 }
+
+/* スプレーの霧：HTMLには書かず、CSSの疑似要素で、紺のカードの中に重ねる */
+.product-spray .product-inner::before {
+    /* 時計回りにかたむける（Figmaの角度に合わせる） */
+    transform: rotate(-15deg);
+    /* ::before は content が必須（中身は空でOK） */
+    content: "";
+    /* 基準点（.product-inner）の中で、位置を自由に决める */
+    position: absolute;
+    /* カードの上から80px、右から220px（スプレーのノズルの左側に霧が広がる） */
+    top: -41px;
+    right: 266px;
+    width: 440px;
+    height: 322px;
+    /* 霧の画像（背景を消した透明PNG）。contain＝切らずに全体を収める */
+    background-image: url("../images/deco-spray-mist.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* 画像の右端（細い先端側）を、枠の右に寄せる */
+    background-position: right center;
+    /* 霧の上にあるものを、クリックできるようにする（霧はマウスを無視する） */
+    pointer-events: none;
+}
+
+/* ===== スプレーの後ろの桜の塊 ===== */
+/* ::after = 要素の「中身の最後」に作れる、もう1つの飾り用の箱。
+   ::before(霧)で1つ使ったので、桜は ::after を使う。
+   装飾なので alt もいらない・読み上げもされない(アクセシビリティ的にもOK) */
+.product-spray .product-inner::after {
+    content: "";
+    position: absolute;
+    bottom: -239px;     /* 下へ動かす(スプレーの下半分の後ろへ) */
+    right: -16px;       /* スプレーの真後ろに寄せる */
+    width: 503px;      /* 少し大きくして、スプレーの左右にはみ出させる */
+    height: 709px;
+    background-image: url("../images/deco-flower.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
 
 /* ----------------------------------------------------------
    7. 成分カード（うす紫のカード）
@@ -467,16 +520,16 @@ main {
 .trial-badge {
     /* 基準点（.trial）の中で、位置を自由に決める */
     position: absolute;
-    top: 24px;
-    left: 24px;
-    width: 100px;
-    height: 100px;
-    /* 50% で円にする */
-    border-radius: 50%;
-    /* シャボン玉の画像を丸く敷く。画像が読めないときの保険に半透明の白も指定 */
-    background-color: rgba(255, 255, 255, 0.2);
+    top: -37px;
+    left: -45px;
+    /* Figmaに合わせて大きめに（幅と高さを同じにすると正方形の枠になる） */
+    width: 320px;
+    height: 320px;
+    /* シャボン玉の画像（背景を消した透明PNG）。
+       contain＝切らずに全体を収める。no-repeat＝繰り返さない */
     background-image: url("../images/syabondama.png");
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     /* 中の文字を、縦も横も真ん中にそろえる */
     display: flex;
@@ -484,10 +537,10 @@ main {
     justify-content: center;
     text-align: center;
     color: var(--color-white);
-    font-size: 16px;
+    font-size: 36px;
     line-height: 1.3;
-    /* 明るいシャボン玉の上でも白文字が読めるように、濃い紫の影を付ける */
-    text-shadow: 0 0 6px var(--color-purple);
+    /* シャボン玉の上でも白文字が読めるように、濃い紫の影を付ける */
+    text-shadow: 0 0 8px var(--color-purple);
 }
 
 /* お試しの中身：画像は横いっぱい、下に「価格」と「ボタン」を横並び */
