@@ -82,9 +82,10 @@ body {
     color: var(--color-white);
     /* 行間：文字サイズの1.8倍。ゆったり読めて高級感が出る */
     line-height: 1.8;
-        /* ページ全体の背景：Figmaの桜とシャボン玉の背景を敷く
-       background-color の紺は、画像が読み込めないときの保険として残す */
+     /* ページ全体の背景：Figmaの桜とシャボン玉の背景を敷く
+    background-color の紺は、画像が読み込めないときの保険として残す */
     background-image: url("../images/bg-page.png");
+     overflow-x: hidden;   /* 横にはみ出した飾りで、横スクロールが出ないようにする */
     /* cover：画面いっぱいに広げる。中央上を基準に見せる */
     background-size: cover;
     background-position: center top;
@@ -96,6 +97,7 @@ body {
    Figma の中央にある白い縦長カラム。この中にカードが縦に並ぶ
    ---------------------------------------------------------- */
 main {
+    position: relative;     /* 中に飾りを重ねるための「基準点」 */
     /* 横幅は最大1000px、真ん中に置く */
     max-width: var(--content-width);
     margin: 0 auto;
@@ -335,9 +337,9 @@ main {
     width: 300px;
 }
 
-/* スプレーは、右端から48pxの位置に置く */
+/* スプレーは、右端から-9pxの位置に置く */
 .product-spray .product-image {
-    /* 時計回りにかたむける（Figmaの角度に合わせる） */
+    /* 反時計回りに-15degかたむける（Figmaの角度に合わせる） */
     transform: rotate(-15deg);
     position: absolute;     /* 流れから外して、好きな場所に置く */
     right: -9px;           /* 右からの位置 */
@@ -353,7 +355,7 @@ main {
     content: "";
     /* 基準点（.product-inner）の中で、位置を自由に决める */
     position: absolute;
-    /* カードの上から80px、右から220px（スプレーのノズルの左側に霧が広がる） */
+    /* カードの上から-41px、右から266px（スプレーのノズルの左側に霧が広がる） */
     top: -41px;
     right: 266px;
     width: 440px;
