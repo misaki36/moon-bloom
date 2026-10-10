@@ -256,6 +256,73 @@ main {
     gap: 8px;
 }
 
+/* スプレーのセクション全体を「基準点」にする。
+   この中で、飾りの位置を自由に決められるようになる */
+.product-spray {
+    position: relative;
+}
+
+/* スプレーのカードの左上の角に、大きな花びらを重ねる。
+   ::before は、HTMLに書かずに作れる飾り用の箱。装飾なので alt も不要 */
+.product-spray::before {
+    /* ::before は content が必須(中身は空でOK) */
+    content: "";
+    /* 基準点(.product-spray)の中で、位置を自由に決める */
+    position: absolute;
+    /* 上から-87px = 上へ87pxはみ出す(マイナスは、外へ出る) */
+    top: -107px;
+    /* 左から-67px = 左へ67pxはみ出す */
+    left: -67px;
+    /* 飾りの箱の大きさ */
+    width: 200px;
+    height: 210px;
+    /* 花びらの画像。contain＝切らずに全体を収める */
+    background-image: url("../images/deco-petal-big.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* 飾りの下にあるリンクやボタンを、クリックできるようにする */
+    pointer-events: none;
+    /* カードより手前に出す(数字が大きい方が上) */
+    z-index: 3;
+}
+
+/* セラムカードの右端に花びらを飾る */
+
+/* まず親に「基準点」をつける（スプレーカードと同じ手順） */
+.product-serum {
+    position: relative; /* 中に置く飾りの基準点にする */
+}
+
+/* 花びら本体 */
+.product-serum::after {
+    content: "";                /* 疑似要素に必須。空でOK */
+    position: absolute;         /* 親(.product-serum)を基準に置く */
+    top: 520px;                  /* 親の上端から60px下 */
+    right: -27px;               /* マイナス＝親の右端より外側へはみ出す */
+    width: 250px;               /* 飾りの箱の幅 */
+    height: 300px;              /* 飾りの箱の高さ */
+    background-image: url("../images/deco-petals-4.png"); /* 4枚の花びら画像 */
+    background-size: contain;   /* 画像を切らずに箱へ収める */
+    background-repeat: no-repeat; /* 繰り返さない */
+    pointer-events: none;       /* 下の要素のクリックを邪魔しない */
+    z-index: 3;                 /* 他の要素より手前に表示する */
+}
+
+/* 成分カードの左下に、泡と花びらを飾る（左の枠をまたぐ） */
+.ingredients::after {
+    content: "";                /* 疑似要素に必須。空でOK */
+    position: absolute;         /* 親(.ingredients)を基準に置く */
+    top: 380px;                 /* 親の上端から380px下 */
+    left: -30px;                /* マイナス＝親の左端より外側へはみ出す */
+    width: 180px;               /* 飾りの箱の幅 */
+    height: 217px;              /* 飾りの箱の高さ */
+    background-image: url("../images/deco-bubble-petals.png"); /* 泡+花びら2枚の画像 */
+    background-size: contain;   /* 画像を切らずに箱へ収める */
+    background-repeat: no-repeat; /* 繰り返さない */
+    pointer-events: none;       /* 下の要素のクリックを邪魔しない */
+    z-index: 3;                 /* 他の要素より手前に表示する */
+}
+
 /* カード本体（商品の文章と瓶が入る箱） */
 .product-inner {
     /* 子の img を置くときの「基準点」にする（下の解説を読んでね） */
@@ -402,7 +469,24 @@ main {
     color: var(--color-purple);
     border-radius: 12px;
     padding: 40px 48px;
+    position: relative; /* 飾りの桜を置くときの「基準点」にする */
 }
+
+/* 成分カードの右上に、桜の花びらを縦に並べて飾る */
+.ingredients::before {
+    content: "";                /* 疑似要素は content が無いと表示されない（空でも必須） */
+    position: absolute;         /* 親(.ingredients)を基準点にして自由な位置に置く */
+    top: 20px;                  /* 親の上端から20px下 */
+    right: -24px;                /* 親の右端から30px内側 */
+    width: 303px;               /* 飾りを入れる箱の幅 */
+    height: 250px;              /* 飾りを入れる箱の高さ */
+    background-image: url("../images/deco-petals-8.png"); /* 8枚の花びら画像 */
+    background-size: contain;   /* 画像を切らずに箱の中へ収める */
+    background-repeat: no-repeat; /* 画像を繰り返さない */
+    pointer-events: none;       /* 飾りの上でもクリックやタップを下の要素に通す */
+}
+
+/* ↓ ここから下に新しく書く */
 
 /* カードの見出し（h3） */
 .ingredients-title {
@@ -457,6 +541,7 @@ main {
 .ingredients-note {
     margin-top: 24px;
     font-size: 14px;
+    text-align: right; /* 文字を右揃えにする */
 }
 
 /* ----------------------------------------------------------
@@ -538,6 +623,27 @@ main {
 .trial {
     position: relative;
     color: var(--color-black);
+}
+
+/* 価格の後ろに、8枚の花びらを飾る */
+.trial::after {
+    content: "";                /* 疑似要素に必須。空でOK */
+    position: absolute;         /* .trial を基準に置く */
+    top: 580px;      /* 上端から447px下（価格の高さに合わせた） */
+    right: 782px;    /* 右端から566px内側 */
+    width: 200px;               /* 飾りの箱の幅 */
+    height: 300px;              /* 飾りの箱の高さ */
+    background-image: url("../images/deco-petals-8.png"); /* 8枚の花びら */
+    background-size: contain;   /* 画像を切らずに収める */
+    background-repeat: no-repeat; /* 繰り返さない */
+    pointer-events: none;       /* 下のボタンやリンクのクリックを邪魔しない */
+    transform: rotate(-60deg) scaleX(-1); /* 左に10度傾ける + 左右反転（1行にまとめる） */
+}
+
+/* 価格の文字を、桜より手前に出す */
+.trial-price {          /* ← ここは手順1で見つけたクラス名に書き換える */
+    position: relative; /* z-index を効かせるために、位置指定をつける（見た目は変わらない） */
+    z-index: 1;         /* 桜（z-index: 0）より大きい数字にして、手前に出す */
 }
 
 /* 丸い「7日間お試し」バッジ：画像の左上に重ねる */
