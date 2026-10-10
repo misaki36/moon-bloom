@@ -513,11 +513,11 @@ main {
 
 /* 成分の写真：丸く切り抜く */
 .ingredient-photo {
-    width: 120px;
-    height: 120px;
-    /* 50% にすると、正方形が完全な円になる */
+    width: 150px;   /* 横幅（120px から広げる） */
+    height: 115px;  /* 高さは幅より小さくする → 横長の楕円になる */
+    /* 50% にすると、箱の形に合わせた楕円になる（正方形なら円、横長なら楕円） */
     border-radius: 50%;
-    /* 縦横比を保ったまま、円の中いっぱいに表示（はみ出しは切れる） */
+    /* 縦横比を保ったまま、楕円の中いっぱいに表示（はみ出しは切れる） */
     object-fit: cover;
     /* display:block の画像を、左右 auto で中央に置く */
     margin: 0 auto;
@@ -539,9 +539,11 @@ main {
 
 /* カード下の一言 */
 .ingredients-note {
-    margin-top: 24px;
+    margin-top: 32px; /* 文章の上に32pxの余白をつけて、下へ動かす */
     font-size: 14px;
     text-align: right; /* 文字を右揃えにする */
+    position: relative; /* 元の場所を基準にして、見た目だけ動かせるようにする */
+    top: 16px;          /* 元の位置から16px下に見た目だけ動かす（枠は伸びない） */
 }
 
 /* ----------------------------------------------------------
@@ -592,6 +594,39 @@ main {
     color: var(--color-purple);
     border-radius: 12px;
     padding: 24px 32px;
+}
+
+/* 成分説明の各行の名前（dt）の前に、アイコンを置く箱を作る（4つ共通の設定） */
+.ingredients-description dt::before {
+    content: "";                  /* 疑似要素に必須。空でOK */
+    display: inline-block;        /* 文字と同じ行に並べつつ、幅と高さを持たせる */
+    width: 24px;                  /* アイコンの幅 */
+    height: 24px;                 /* アイコンの高さ */
+    margin-right: 12px;           /* アイコンと文字の間の余白 */
+    vertical-align: middle;       /* 文字の高さの真ん中に揃える */
+    background-size: contain;     /* 画像を切らずに箱へ収める */
+    background-repeat: no-repeat; /* 繰り返さない */
+    background-position: center;  /* 箱の真ん中に置く */
+}
+
+/* 1行目（ナイアシンアミド）：ひらめき */
+.ingredients-description div:nth-child(1) dt::before {
+    background-image: url("../images/icon-sparkle.svg");
+}
+
+/* 2行目（スクワラン）：ボウル */
+.ingredients-description div:nth-child(2) dt::before {
+    background-image: url("../images/icon-bowl.svg");
+}
+
+/* 3行目（桜由来エキス）：花 */
+.ingredients-description div:nth-child(3) dt::before {
+    background-image: url("../images/icon-flower.svg");
+}
+
+/* 4行目（ローヤルゼリーエキス）：ハチミツ */
+.ingredients-description div:nth-child(4) dt::before {
+    background-image: url("../images/icon-honey.svg");
 }
 
 /* 説明1行分（成分名＋効果）：横に並べて、入りきらなければ折り返す */
