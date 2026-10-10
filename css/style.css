@@ -269,9 +269,9 @@ main {
     content: "";
     /* 基準点(.product-spray)の中で、位置を自由に決める */
     position: absolute;
-    /* 上から-87px = 上へ87pxはみ出す(マイナスは、外へ出る) */
+    /* マイナスの値は、親の外へはみ出す（上へはみ出す） */
     top: -107px;
-    /* 左から-67px = 左へ67pxはみ出す */
+    /* 左へはみ出す */
     left: -67px;
     /* 飾りの箱の大きさ */
     width: 200px;
@@ -297,7 +297,7 @@ main {
 .product-serum::after {
     content: "";                /* 疑似要素に必須。空でOK */
     position: absolute;         /* 親(.product-serum)を基準に置く */
-    top: 520px;                  /* 親の上端から60px下 */
+    top: 520px;                 /* 親の上端から下へ（カードの下のほう） */
     right: -27px;               /* マイナス＝親の右端より外側へはみ出す */
     width: 250px;               /* 飾りの箱の幅 */
     height: 300px;              /* 飾りの箱の高さ */
@@ -416,11 +416,11 @@ main {
 
 /* スプレーの霧：HTMLには書かず、CSSの疑似要素で、紺のカードの中に重ねる */
 .product-spray .product-inner::before {
-    /* 時計回りにかたむける（Figmaの角度に合わせる） */
+    /* 反時計回り（左）にかたむける */
     transform: rotate(-15deg);
     /* ::before は content が必須（中身は空でOK） */
     content: "";
-    /* 基準点（.product-inner）の中で、位置を自由に决める */
+    /* 基準点（.product-inner）の中で、位置を自由に決める */
     position: absolute;
     /* カードの上から-41px、右から266px（スプレーのノズルの左側に霧が広がる） */
     top: -41px;
@@ -477,7 +477,7 @@ main {
     content: "";                /* 疑似要素は content が無いと表示されない（空でも必須） */
     position: absolute;         /* 親(.ingredients)を基準点にして自由な位置に置く */
     top: 20px;                  /* 親の上端から20px下 */
-    right: -24px;                /* 親の右端から30px内側 */
+    right: -24px;               /* 右端の少し外へはみ出す */
     width: 303px;               /* 飾りを入れる箱の幅 */
     height: 250px;              /* 飾りを入れる箱の高さ */
     background-image: url("../images/deco-petals-8.png"); /* 8枚の花びら画像 */
@@ -485,8 +485,6 @@ main {
     background-repeat: no-repeat; /* 画像を繰り返さない */
     pointer-events: none;       /* 飾りの上でもクリックやタップを下の要素に通す */
 }
-
-/* ↓ ここから下に新しく書く */
 
 /* カードの見出し（h3） */
 .ingredients-title {
@@ -511,9 +509,9 @@ main {
     text-align: center;
 }
 
-/* 成分の写真：丸く切り抜く */
+/* 成分の写真：楕円に切り抜く */
 .ingredient-photo {
-    width: 150px;   /* 横幅（120px から広げる） */
+    width: 150px;   /* 横幅 */
     height: 115px;  /* 高さは幅より小さくする → 横長の楕円になる */
     /* 50% にすると、箱の形に合わせた楕円になる（正方形なら円、横長なら楕円） */
     border-radius: 50%;
@@ -664,21 +662,15 @@ main {
 .trial::after {
     content: "";                /* 疑似要素に必須。空でOK */
     position: absolute;         /* .trial を基準に置く */
-    top: 580px;      /* 上端から447px下（価格の高さに合わせた） */
-    right: 782px;    /* 右端から566px内側 */
+    top: 580px;      /* 上端から下へ（価格のあたり） */
+    right: 782px;    /* 右端から内側へ（価格の右側） */
     width: 200px;               /* 飾りの箱の幅 */
     height: 300px;              /* 飾りの箱の高さ */
     background-image: url("../images/deco-petals-8.png"); /* 8枚の花びら */
     background-size: contain;   /* 画像を切らずに収める */
     background-repeat: no-repeat; /* 繰り返さない */
     pointer-events: none;       /* 下のボタンやリンクのクリックを邪魔しない */
-    transform: rotate(-60deg) scaleX(-1); /* 左に10度傾ける + 左右反転（1行にまとめる） */
-}
-
-/* 価格の文字を、桜より手前に出す */
-.trial-price {          /* ← ここは手順1で見つけたクラス名に書き換える */
-    position: relative; /* z-index を効かせるために、位置指定をつける（見た目は変わらない） */
-    z-index: 1;         /* 桜（z-index: 0）より大きい数字にして、手前に出す */
+    transform: rotate(-60deg) scaleX(-1); /* 左に傾けて、左右を反転する（transform は1行にまとめる） */
 }
 
 /* 丸い「7日間お試し」バッジ：画像の左上に重ねる */
@@ -725,9 +717,11 @@ main {
     border-radius: 12px;
 }
 
-/* 価格エリア：左右に少し余白 */
+/* 価格エリア：左右に少し余白。桜（飾り）より手前に出す */
 .trial-price {
     padding: 0 16px;
+    position: relative; /* z-index を効かせるための指定 */
+    z-index: 1;         /* 桜より手前に出す */
 }
 
 /* 通常価格：小さく、取り消し線を引く */
@@ -964,6 +958,7 @@ main {
     border-radius: 12px;
     background-color: #E8E6EC;
     font-size: 14px;
+    text-wrap: pretty; /* 最後の行に1文字だけ残らないように、改行の位置をきれいに整える */
 }
 
 /* ----------------------------------------------------------
