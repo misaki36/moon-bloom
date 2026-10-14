@@ -781,6 +781,14 @@ main {
 /* ボタンの中の矢印「→」：文字との間をあける */
 .accordion-arrow {
     margin-left: 8px;
+    display: inline-block;        /* 回す（transform）ためには、inline-block が必要 */
+    font-size: 0.8em;             /* ▼ は目立ちやすいので、まわりの文字より少し小さくする */
+    transition: transform 0.2s;   /* 回るときに、0.2秒かけて、なめらかに動かす */
+}
+
+/* ボタンが開いているとき（aria-expanded が true のとき）、矢印を180度回して「▲」にする */
+.accordion-trigger[aria-expanded="true"] .accordion-arrow {
+    transform: rotate(180deg);
 }
 
 /* ----------------------------------------------------------
