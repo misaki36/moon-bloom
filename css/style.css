@@ -934,6 +934,13 @@ main {
     align-items: start;
 }
 
+/* FAQ 1つ分のカード：質問と答えを、ひとつの箱にまとめる */
+.faq-item {
+    background-color: #D2D0D6; /* 質問の部分の色（カード全体の色） */
+    border-radius: 24px;       /* 角の丸み（閉じているときはカプセル型になる） */
+    overflow: hidden;          /* 中の答えの箱が、カードの丸みからはみ出さないようにする */
+}
+
 /* 質問ボタン：グレーのカプセル。質問は左、「＋」は右端 */
 .faq-question {
     display: flex;
@@ -942,9 +949,8 @@ main {
     width: 100%;
     padding: 12px 24px;
     border: none;
-    border-radius: 999px;
-    /* Figmaのグレー */
-    background-color: #D2D0D6;
+    border-radius: 0;           /* 丸みは、カード(.faq-item)にまかせる */
+    background-color: transparent; /* 色もカードにまかせる（透明にする） */
     color: var(--color-black);
     font-size: 14px;
     /* ボタンの文字は、初期だと中央ぞろえなので左に */
@@ -959,7 +965,7 @@ main {
 
 .faq-question:focus-visible {
     outline: 3px solid var(--color-purple);
-    outline-offset: 3px;
+    outline-offset: -3px;   /* マイナスにして、枠線を内側に出す（外側は切れてしまうため） */
 }
 
 /* 「＋」のマーク：文字との間をあける */
@@ -970,12 +976,12 @@ main {
 
 /* 答えの箱（※ display は書かない。hidden で隠すため） */
 .faq-answer {
-    margin-top: 8px;
+    margin-top: 0;               /* 質問と、すき間なくつなげる */
     padding: 16px 24px;
-    border-radius: 12px;
-    background-color: #E8E6EC;
+    border-radius: 0;            /* 丸みは、カードにまかせる */
+    background-color: #E8E6EC;   /* 質問より少し明るい色で、「ここから答え」と分かるようにする */
     font-size: 14px;
-    text-wrap: pretty; /* 最後の行に1文字だけ残らないように、改行の位置をきれいに整える */
+    text-wrap: pretty;
 }
 
 /* ----------------------------------------------------------
@@ -1016,3 +1022,4 @@ main {
     /* 背景画像の上でも読めるように、濃い影を付ける */
     text-shadow: 0 0 4px var(--color-navy);
 }
+
