@@ -82,10 +82,11 @@ body {
     color: var(--color-white);
     /* 行間：文字サイズの1.8倍。ゆったり読めて高級感が出る */
     line-height: 1.8;
-     /* ページ全体の背景：Figmaの桜とシャボン玉の背景を敷く
+    /* ページ全体の背景：Figmaの桜とシャボン玉の背景を敷く
     background-color の紺は、画像が読み込めないときの保険として残す */
     background-image: url("../images/bg-page.png");
-     overflow-x: hidden;   /* 横にはみ出した飾りで、横スクロールが出ないようにする */
+    overflow-x: hidden;
+    /* 横にはみ出した飾りで、横スクロールが出ないようにする */
     /* cover：画面いっぱいに広げる。中央上を基準に見せる */
     background-size: cover;
     background-position: center top;
@@ -97,7 +98,8 @@ body {
    Figma の中央にある白い縦長カラム。この中にカードが縦に並ぶ
    ---------------------------------------------------------- */
 main {
-    position: relative;     /* 中に飾りを重ねるための「基準点」 */
+    position: relative;
+    /* 中に飾りを重ねるための「基準点」 */
     /* 横幅は最大1000px、真ん中に置く */
     max-width: var(--content-width);
     margin: 0 auto;
@@ -120,7 +122,7 @@ main {
 /* ヘッダー全体：背景を白にする */
 .site-header {
     background-color: var(--color-white);
-        /* 白い枠（main）と同じ幅にして、枠の一番上につなげる */
+    /* 白い枠（main）と同じ幅にして、枠の一番上につなげる */
     max-width: var(--content-width);
     /* 上に24pxあけて背景を少し見せ、左右は auto で中央に */
     margin: 24px auto 0;
@@ -183,7 +185,7 @@ main {
 .fv {
     /* ../ は「ひとつ上のフォルダへ戻る」。style.css は css フォルダの中にあるので、
        いったん外に出てから images フォルダの画像を探す */
-        /* 背景を2枚重ねる：先に書いた方が上に載る。
+    /* 背景を2枚重ねる：先に書いた方が上に載る。
        ①上：左の濃い紺から、右に向かって透明になるもや（文字を読みやすくする）
        ②下：月の画像 */
     background-image:
@@ -290,37 +292,60 @@ main {
 
 /* まず親に「基準点」をつける（スプレーカードと同じ手順） */
 .product-serum {
-    position: relative; /* 中に置く飾りの基準点にする */
+    position: relative;
+    /* 中に置く飾りの基準点にする */
 }
 
 /* 花びら本体 */
 .product-serum::after {
-    content: "";                /* 疑似要素に必須。空でOK */
-    position: absolute;         /* 親(.product-serum)を基準に置く */
-    top: 520px;                 /* 親の上端から下へ（カードの下のほう） */
-    right: -27px;               /* マイナス＝親の右端より外側へはみ出す */
-    width: 250px;               /* 飾りの箱の幅 */
-    height: 300px;              /* 飾りの箱の高さ */
-    background-image: url("../images/deco-petals-4.png"); /* 4枚の花びら画像 */
-    background-size: contain;   /* 画像を切らずに箱へ収める */
-    background-repeat: no-repeat; /* 繰り返さない */
-    pointer-events: none;       /* 下の要素のクリックを邪魔しない */
-    z-index: 3;                 /* 他の要素より手前に表示する */
+    content: "";
+    /* 疑似要素に必須。空でOK */
+    position: absolute;
+    /* 親(.product-serum)を基準に置く */
+    top: 520px;
+    /* 親の上端から下へ（カードの下のほう） */
+    right: -27px;
+    /* マイナス＝親の右端より外側へはみ出す */
+    width: 250px;
+    /* 飾りの箱の幅 */
+    height: 300px;
+    /* 飾りの箱の高さ */
+    background-image: url("../images/deco-petals-4.png");
+    /* 4枚の花びら画像 */
+    background-size: contain;
+    /* 画像を切らずに箱へ収める */
+    background-repeat: no-repeat;
+    /* 繰り返さない */
+    pointer-events: none;
+    /* 下の要素のクリックを邪魔しない */
+    z-index: 3;
+    /* 他の要素より手前に表示する */
 }
 
 /* 成分カードの左下に、泡と花びらを飾る（左の枠をまたぐ） */
 .ingredients::after {
-    content: "";                /* 疑似要素に必須。空でOK */
-    position: absolute;         /* 親(.ingredients)を基準に置く */
-    top: 380px;                 /* 親の上端から380px下 */
-    left: -30px;                /* マイナス＝親の左端より外側へはみ出す */
-    width: 180px;               /* 飾りの箱の幅 */
-    height: 217px;              /* 飾りの箱の高さ */
-    background-image: url("../images/deco-bubble-petals.png"); /* 泡+花びら2枚の画像 */
-    background-size: contain;   /* 画像を切らずに箱へ収める */
-    background-repeat: no-repeat; /* 繰り返さない */
-    pointer-events: none;       /* 下の要素のクリックを邪魔しない */
-    z-index: 3;                 /* 他の要素より手前に表示する */
+    content: "";
+    /* 疑似要素に必須。空でOK */
+    position: absolute;
+    /* 親(.ingredients)を基準に置く */
+    top: 380px;
+    /* 親の上端から380px下 */
+    left: -30px;
+    /* マイナス＝親の左端より外側へはみ出す */
+    width: 180px;
+    /* 飾りの箱の幅 */
+    height: 217px;
+    /* 飾りの箱の高さ */
+    background-image: url("../images/deco-bubble-petals.png");
+    /* 泡+花びら2枚の画像 */
+    background-size: contain;
+    /* 画像を切らずに箱へ収める */
+    background-repeat: no-repeat;
+    /* 繰り返さない */
+    pointer-events: none;
+    /* 下の要素のクリックを邪魔しない */
+    z-index: 3;
+    /* 他の要素より手前に表示する */
 }
 
 /* カード本体（商品の文章と瓶が入る箱） */
@@ -377,22 +402,26 @@ main {
 .product-points .icon {
     width: 30px;
     height: 30px;
-    flex-shrink: 0;            /* 横並びの中でつぶれないように固定 */
+    flex-shrink: 0;
+    /* 横並びの中でつぶれないように固定 */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .product-points li:nth-child(1) .icon {
-    background-image: url("../images/icon-clock.svg");   /* 時計 */
+    background-image: url("../images/icon-clock.svg");
+    /* 時計 */
 }
 
 .product-points li:nth-child(2) .icon {
-    background-image: url("../images/icon-drop.svg");    /* しずく */
+    background-image: url("../images/icon-drop.svg");
+    /* しずく */
 }
 
 .product-points li:nth-child(3) .icon {
-    background-image: url("../images/icon-citrus.svg");  /* 柑橘 */
+    background-image: url("../images/icon-citrus.svg");
+    /* 柑橘 */
 }
 
 /* 商品の画像：カードの中で自由に置く */
@@ -408,10 +437,14 @@ main {
 .product-spray .product-image {
     /* 反時計回りに-15degかたむける（Figmaの角度に合わせる） */
     transform: rotate(-15deg);
-    position: absolute;     /* 流れから外して、好きな場所に置く */
-    right: -9px;           /* 右からの位置 */
-    bottom: 47px;           /* 下からの位置 */
-    z-index: 2;     /* 桜(0)より大きい数字 = 手前に出る */
+    position: absolute;
+    /* 流れから外して、好きな場所に置く */
+    right: -9px;
+    /* 右からの位置 */
+    bottom: 47px;
+    /* 下からの位置 */
+    z-index: 2;
+    /* 桜(0)より大きい数字 = 手前に出る */
 }
 
 /* スプレーの霧：HTMLには書かず、CSSの疑似要素で、紺のカードの中に重ねる */
@@ -444,9 +477,12 @@ main {
 .product-spray .product-inner::after {
     content: "";
     position: absolute;
-    bottom: -239px;     /* 下へ動かす(スプレーの下半分の後ろへ) */
-    right: -16px;       /* スプレーの真後ろに寄せる */
-    width: 503px;      /* 少し大きくして、スプレーの左右にはみ出させる */
+    bottom: -239px;
+    /* 下へ動かす(スプレーの下半分の後ろへ) */
+    right: -16px;
+    /* スプレーの真後ろに寄せる */
+    width: 503px;
+    /* 少し大きくして、スプレーの左右にはみ出させる */
     height: 709px;
     background-image: url("../images/deco-flower.png");
     background-size: contain;
@@ -469,21 +505,32 @@ main {
     color: var(--color-purple);
     border-radius: 12px;
     padding: 40px 48px;
-    position: relative; /* 飾りの桜を置くときの「基準点」にする */
+    position: relative;
+    /* 飾りの桜を置くときの「基準点」にする */
 }
 
 /* 成分カードの右上に、桜の花びらを縦に並べて飾る */
 .ingredients::before {
-    content: "";                /* 疑似要素は content が無いと表示されない（空でも必須） */
-    position: absolute;         /* 親(.ingredients)を基準点にして自由な位置に置く */
-    top: 20px;                  /* 親の上端から20px下 */
-    right: -24px;               /* 右端の少し外へはみ出す */
-    width: 303px;               /* 飾りを入れる箱の幅 */
-    height: 250px;              /* 飾りを入れる箱の高さ */
-    background-image: url("../images/deco-petals-8.png"); /* 8枚の花びら画像 */
-    background-size: contain;   /* 画像を切らずに箱の中へ収める */
-    background-repeat: no-repeat; /* 画像を繰り返さない */
-    pointer-events: none;       /* 飾りの上でもクリックやタップを下の要素に通す */
+    content: "";
+    /* 疑似要素は content が無いと表示されない（空でも必須） */
+    position: absolute;
+    /* 親(.ingredients)を基準点にして自由な位置に置く */
+    top: 20px;
+    /* 親の上端から20px下 */
+    right: -24px;
+    /* 右端の少し外へはみ出す */
+    width: 303px;
+    /* 飾りを入れる箱の幅 */
+    height: 250px;
+    /* 飾りを入れる箱の高さ */
+    background-image: url("../images/deco-petals-8.png");
+    /* 8枚の花びら画像 */
+    background-size: contain;
+    /* 画像を切らずに箱の中へ収める */
+    background-repeat: no-repeat;
+    /* 画像を繰り返さない */
+    pointer-events: none;
+    /* 飾りの上でもクリックやタップを下の要素に通す */
 }
 
 /* カードの見出し（h3） */
@@ -511,8 +558,10 @@ main {
 
 /* 成分の写真：楕円に切り抜く */
 .ingredient-photo {
-    width: 150px;   /* 横幅 */
-    height: 115px;  /* 高さは幅より小さくする → 横長の楕円になる */
+    width: 150px;
+    /* 横幅 */
+    height: 115px;
+    /* 高さは幅より小さくする → 横長の楕円になる */
     /* 50% にすると、箱の形に合わせた楕円になる（正方形なら円、横長なら楕円） */
     border-radius: 50%;
     /* 縦横比を保ったまま、楕円の中いっぱいに表示（はみ出しは切れる） */
@@ -537,11 +586,15 @@ main {
 
 /* カード下の一言 */
 .ingredients-note {
-    margin-top: 32px; /* 文章の上に32pxの余白をつけて、下へ動かす */
+    margin-top: 32px;
+    /* 文章の上に32pxの余白をつけて、下へ動かす */
     font-size: 14px;
-    text-align: right; /* 文字を右揃えにする */
-    position: relative; /* 元の場所を基準にして、見た目だけ動かせるようにする */
-    top: 16px;          /* 元の位置から16px下に見た目だけ動かす（枠は伸びない） */
+    text-align: right;
+    /* 文字を右揃えにする */
+    position: relative;
+    /* 元の場所を基準にして、見た目だけ動かせるようにする */
+    top: 16px;
+    /* 元の位置から16px下に見た目だけ動かす（枠は伸びない） */
 }
 
 /* ----------------------------------------------------------
@@ -596,15 +649,24 @@ main {
 
 /* 成分説明の各行の名前（dt）の前に、アイコンを置く箱を作る（4つ共通の設定） */
 .ingredients-description dt::before {
-    content: "";                  /* 疑似要素に必須。空でOK */
-    display: inline-block;        /* 文字と同じ行に並べつつ、幅と高さを持たせる */
-    width: 24px;                  /* アイコンの幅 */
-    height: 24px;                 /* アイコンの高さ */
-    margin-right: 12px;           /* アイコンと文字の間の余白 */
-    vertical-align: middle;       /* 文字の高さの真ん中に揃える */
-    background-size: contain;     /* 画像を切らずに箱へ収める */
-    background-repeat: no-repeat; /* 繰り返さない */
-    background-position: center;  /* 箱の真ん中に置く */
+    content: "";
+    /* 疑似要素に必須。空でOK */
+    display: inline-block;
+    /* 文字と同じ行に並べつつ、幅と高さを持たせる */
+    width: 24px;
+    /* アイコンの幅 */
+    height: 24px;
+    /* アイコンの高さ */
+    margin-right: 12px;
+    /* アイコンと文字の間の余白 */
+    vertical-align: middle;
+    /* 文字の高さの真ん中に揃える */
+    background-size: contain;
+    /* 画像を切らずに箱へ収める */
+    background-repeat: no-repeat;
+    /* 繰り返さない */
+    background-position: center;
+    /* 箱の真ん中に置く */
 }
 
 /* 1行目（ナイアシンアミド）：ひらめき */
@@ -660,17 +722,28 @@ main {
 
 /* 価格の後ろに、8枚の花びらを飾る */
 .trial::after {
-    content: "";                /* 疑似要素に必須。空でOK */
-    position: absolute;         /* .trial を基準に置く */
-    top: 580px;      /* 上端から下へ（価格のあたり） */
-    right: 782px;    /* 右端から内側へ（価格の右側） */
-    width: 200px;               /* 飾りの箱の幅 */
-    height: 300px;              /* 飾りの箱の高さ */
-    background-image: url("../images/deco-petals-8.png"); /* 8枚の花びら */
-    background-size: contain;   /* 画像を切らずに収める */
-    background-repeat: no-repeat; /* 繰り返さない */
-    pointer-events: none;       /* 下のボタンやリンクのクリックを邪魔しない */
-    transform: rotate(-60deg) scaleX(-1); /* 左に傾けて、左右を反転する（transform は1行にまとめる） */
+    content: "";
+    /* 疑似要素に必須。空でOK */
+    position: absolute;
+    /* .trial を基準に置く */
+    top: 580px;
+    /* 上端から下へ（価格のあたり） */
+    right: 782px;
+    /* 右端から内側へ（価格の右側） */
+    width: 200px;
+    /* 飾りの箱の幅 */
+    height: 300px;
+    /* 飾りの箱の高さ */
+    background-image: url("../images/deco-petals-8.png");
+    /* 8枚の花びら */
+    background-size: contain;
+    /* 画像を切らずに収める */
+    background-repeat: no-repeat;
+    /* 繰り返さない */
+    pointer-events: none;
+    /* 下のボタンやリンクのクリックを邪魔しない */
+    transform: rotate(-60deg) scaleX(-1);
+    /* 左に傾けて、左右を反転する（transform は1行にまとめる） */
 }
 
 /* 丸い「7日間お試し」バッジ：画像の左上に重ねる */
@@ -720,8 +793,10 @@ main {
 /* 価格エリア：左右に少し余白。桜（飾り）より手前に出す */
 .trial-price {
     padding: 0 16px;
-    position: relative; /* z-index を効かせるための指定 */
-    z-index: 1;         /* 桜より手前に出す */
+    position: relative;
+    /* z-index を効かせるための指定 */
+    z-index: 1;
+    /* 桜より手前に出す */
 }
 
 /* 通常価格：小さく、取り消し線を引く */
@@ -781,9 +856,12 @@ main {
 /* ボタンの中の矢印「→」：文字との間をあける */
 .accordion-arrow {
     margin-left: 8px;
-    display: inline-block;        /* 回す（transform）ためには、inline-block が必要 */
-    font-size: 0.8em;             /* ▼ は目立ちやすいので、まわりの文字より少し小さくする */
-    transition: transform 0.2s;   /* 回るときに、0.2秒かけて、なめらかに動かす */
+    display: inline-block;
+    /* 回す（transform）ためには、inline-block が必要 */
+    font-size: 0.8em;
+    /* ▼ は目立ちやすいので、まわりの文字より少し小さくする */
+    transition: transform 0.2s;
+    /* 回るときに、0.2秒かけて、なめらかに動かす */
 }
 
 /* ボタンが開いているとき（aria-expanded が true のとき）、矢印を180度回して「▲」にする */
@@ -885,11 +963,16 @@ main {
 
 /* 送信したあとに出る、お礼のメッセージ（JSで作られる p タグ） */
 .form-message {
-    margin-top: 16px;     /* ボタンとの間をあける */
-    font-size: 14px;      /* 項目名と同じくらいの、控えめな大きさ */
-    line-height: 1.6;     /* 2行になっても読みやすい行間 */
-    text-align: center;   /* 文字を中央ぞろえにする（ボタンの幅に合わせる） */
-    text-wrap: pretty;    /* 最後の行に1文字だけ残らないように、改行をきれいにする */
+    margin-top: 16px;
+    /* ボタンとの間をあける */
+    font-size: 14px;
+    /* 項目名と同じくらいの、控えめな大きさ */
+    line-height: 1.6;
+    /* 2行になっても読みやすい行間 */
+    text-align: center;
+    /* 文字を中央ぞろえにする（ボタンの幅に合わせる） */
+    text-wrap: pretty;
+    /* 最後の行に1文字だけ残らないように、改行をきれいにする */
 }
 
 /* ----------------------------------------------------------
@@ -936,9 +1019,12 @@ main {
 
 /* FAQ 1つ分のカード：質問と答えを、ひとつの箱にまとめる */
 .faq-item {
-    background-color: #D2D0D6; /* 質問の部分の色（カード全体の色） */
-    border-radius: 24px;       /* 角の丸み（閉じているときはカプセル型になる） */
-    overflow: hidden;          /* 中の答えの箱が、カードの丸みからはみ出さないようにする */
+    background-color: #D2D0D6;
+    /* 質問の部分の色（カード全体の色） */
+    border-radius: 24px;
+    /* 角の丸み（閉じているときはカプセル型になる） */
+    overflow: hidden;
+    /* 中の答えの箱が、カードの丸みからはみ出さないようにする */
 }
 
 /* 質問ボタン：グレーのカプセル。質問は左、「＋」は右端 */
@@ -949,8 +1035,10 @@ main {
     width: 100%;
     padding: 12px 24px;
     border: none;
-    border-radius: 0;           /* 丸みは、カード(.faq-item)にまかせる */
-    background-color: transparent; /* 色もカードにまかせる（透明にする） */
+    border-radius: 0;
+    /* 丸みは、カード(.faq-item)にまかせる */
+    background-color: transparent;
+    /* 色もカードにまかせる（透明にする） */
     color: var(--color-black);
     font-size: 14px;
     /* ボタンの文字は、初期だと中央ぞろえなので左に */
@@ -965,7 +1053,8 @@ main {
 
 .faq-question:focus-visible {
     outline: 3px solid var(--color-purple);
-    outline-offset: -3px;   /* マイナスにして、枠線を内側に出す（外側は切れてしまうため） */
+    outline-offset: -3px;
+    /* マイナスにして、枠線を内側に出す（外側は切れてしまうため） */
 }
 
 /* 「＋」のマーク：文字との間をあける */
@@ -976,10 +1065,13 @@ main {
 
 /* 答えの箱（※ display は書かない。hidden で隠すため） */
 .faq-answer {
-    margin-top: 0;               /* 質問と、すき間なくつなげる */
+    margin-top: 0;
+    /* 質問と、すき間なくつなげる */
     padding: 16px 24px;
-    border-radius: 0;            /* 丸みは、カードにまかせる */
-    background-color: #E8E6EC;   /* 質問より少し明るい色で、「ここから答え」と分かるようにする */
+    border-radius: 0;
+    /* 丸みは、カードにまかせる */
+    background-color: #E8E6EC;
+    /* 質問より少し明るい色で、「ここから答え」と分かるようにする */
     font-size: 14px;
     text-wrap: pretty;
 }
@@ -1023,3 +1115,210 @@ main {
     text-shadow: 0 0 4px var(--color-navy);
 }
 
+
+/* ===== スマホ版（画面の幅が768px以下のとき）===== */
+@media (max-width: 768px) {
+
+    /* ヘッダー：すき間と文字を小さくして1行に収める */
+    .header-inner {
+        padding: 12px 16px;
+        /* ロゴとナビの間に、最低12pxのすき間をあける */
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .header-nav {
+        gap: 10px;
+    }
+
+    .header-nav a {
+        font-size: 12px;
+    }
+
+    /* トップ（FV）：上下のすき間と文字を小さくする */
+    .fv {
+        padding: 56px 0;
+    }
+
+    .fv-inner {
+        padding: 0 16px;
+    }
+
+    .fv-logo {
+        font-size: 30px;
+    }
+
+    .fv-catch {
+        font-size: 16px;
+    }
+
+    .fv-sub {
+        font-size: 10px;
+    }
+
+    /* ロゴとリンクの文字を、折り返さずに1行にする */
+    .logo,
+    .header-nav a {
+        white-space: nowrap;
+    }
+
+    /* 横にはみ出した飾りでページが小さくならないように、はみ出しを切る */
+    html {
+        overflow-x: hidden;
+    }
+
+    /* ===== スプレーのカード ===== */
+
+    /* カードの内側の余白を小さくする（上下40px、左右24px）。min-heightも外す */
+    .product-inner {
+        padding: 40px 24px;
+        min-height: auto;
+    }
+
+    /* キャッチコピーを小さくする */
+    .product-catch {
+        font-size: 20px;
+    }
+
+    .product-spray .product-image {
+        /* 右の列（2列目）に入れる。1行目から3行ぶん（1 / span 3）の高さを使う */
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        /* 縦は下にそろえる（3行ぶんの高さの、いちばん下） */
+        align-self: end;
+        justify-self: center;
+        position: relative;
+        right: auto;
+        /* 元の場所から、見た目だけ右へ20px動かす */
+        left: 20px;
+        bottom: auto;
+        width: 110px;
+        margin: 0;
+    }
+
+    /* 霧：小さくして、スプレーのノズルの先に置く */
+    .product-spray .product-inner::before {
+        width: 150px;
+        height: 110px;
+        /* カードの上から133px、右から98px（ノズルの左側に霧が広がる） */
+        top: 133px;
+        right: 98px;
+    }
+
+
+    .product-spray .product-inner::after {
+        width: 200px;
+        height: 268px;
+        /* 花の下の端が、紺のカードの下の端に合うように、下へ下げる */
+        bottom: -92px;
+        right: -30px;
+    }
+
+    /* スプレーのカード：2列のグリッドにする（左：文字、右：びん） */
+    .product-spray .product-inner {
+        display: grid;
+        /* 左は残り全部（1fr）、右は110px */
+        grid-template-columns: 1fr 110px;
+        column-gap: 8px;
+    }
+
+    /* 小さな英語ラベル：少し小さくする */
+    .product-label {
+        font-size: 12px;
+    }
+
+    /* 特長の文字：少し小さくして、アイコンとのすき間もせまくする */
+    .product-points li {
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    /* 特長のアイコン：小さくする */
+    .product-points .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .product-spray::before {
+        width: 80px;
+        height: 84px;
+        top: -34px;
+        left: -14px;
+    }
+
+    /* ===== 成分カード（うす紫）===== */
+
+    /* カードの内側の余白を小さくする（上下32px、左右24px） */
+    .ingredients {
+        padding: 32px 24px;
+    }
+
+    /* 成分の2列：すき間を少し小さくする */
+    .ingredients-list {
+        gap: 20px 12px;
+    }
+
+    /* 成分の写真：小さくする（150×115と同じ形のまま、120×92にする） */
+    .ingredient-photo {
+        width: 120px;
+        height: 92px;
+    }
+
+    /* 右上の花びら：さらに小さくして、見出しの右の空きに入れる */
+    .ingredients::before {
+        width: 90px;
+        height: 74px;
+        top: -16px;
+        right: -20px;
+    }
+
+    /* 左の泡：小さくして、写真の左の空きに置く */
+    .ingredients::after {
+        width: 70px;
+        height: 85px;
+        top: 250px;
+        left: -24px;
+    }
+
+    /* ===== 美容液（セラム）のカード ===== */
+
+    /* 2列（左：びん、右：写真）を、1列にする。1fr は、列が1つだけという意味 */
+    .product-serum .product-inner {
+        grid-template-columns: 1fr;
+    }
+
+    /* びん：少し小さくして、真ん中に置く */
+    .product-serum .product-image {
+        width: 160px;
+    }
+
+    /* 成分の説明の箱：内側の余白を小さくする（上下20px、左右20px） */
+    .ingredients-description {
+        padding: 20px;
+    }
+
+    /* セラムの花びら：見出しの右の、空いている所へ移す */
+    .product-serum::after {
+        width: 110px;
+        height: 132px;
+        top: 16px;
+        right: -16px;
+    }
+
+    /* セラムの成分名：少し小さくして、1行に収める */
+    .ingredients-list--serum .ingredient-name {
+        font-size: 14px;
+    }
+
+    /* 成分の説明文：4つとも、名前の下の行に出す */
+    .ingredients-description dd {
+        /* 横幅いっぱい（100%）を使うと、入りきらないので、次の行に押し出される */
+        flex-basis: 100%;
+        /* 左に36px空けて、名前の文字の頭にそろえる（アイコン24px＋すき間12px） */
+        padding-left: 36px;
+    }
+
+}
