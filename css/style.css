@@ -328,8 +328,8 @@ main {
     /* 疑似要素に必須。空でOK */
     position: absolute;
     /* 親(.ingredients)を基準に置く */
-    top: 380px;
-    /* 親の上端から380px下 */
+    top: 322px;
+    /* 親の上端から322px下 */
     left: -30px;
     /* マイナス＝親の左端より外側へはみ出す */
     width: 180px;
@@ -609,8 +609,8 @@ main {
     background: linear-gradient(180deg, #C6B5E6 0%, #A94FCB 100%);
     /* 2列のグリッド（左：瓶、右：成分写真） */
     display: grid;
+    /* 左は残り全部、右は110px（見出しと、びんの2列にする） */
     grid-template-columns: 1fr 1.2fr;
-    /* すき間：縦24px、横32px */
     gap: 24px 32px;
     /* スプレーで決めた「最低480px」は、美容液では不要なので解除する */
     min-height: auto;
@@ -621,7 +621,6 @@ main {
     grid-column: 1 / -1;
 }
 
-/* 瓶の画像：共通ルールの absolute をやめて、グリッドの中に普通に置く */
 .product-serum .product-image {
     /* static＝位置の指定なし（通常の並び方に戻す） */
     position: static;
@@ -1279,7 +1278,7 @@ main {
     .ingredients::after {
         width: 70px;
         height: 85px;
-        top: 250px;
+        top: 332px;
         left: -24px;
     }
 
@@ -1290,9 +1289,16 @@ main {
         grid-template-columns: 1fr;
     }
 
-    /* びん：少し小さくして、真ん中に置く */
     .product-serum .product-image {
-        width: 160px;
+        position: absolute;
+        /* 場所の指定（grid-column など）を取り消して、カード全体を基準にする */
+        grid-column: auto;
+        grid-row: auto;
+        top: -11px;
+        right: 277px;
+        /* 透明な部分があるので、見たい大きさの2倍くらい */
+        width: 89px;
+        margin: 0;
     }
 
     /* 成分の説明の箱：内側の余白を小さくする（上下20px、左右20px） */
@@ -1300,17 +1306,12 @@ main {
         padding: 20px;
     }
 
-    /* セラムの花びら：見出しの右の、空いている所へ移す */
     .product-serum::after {
         width: 110px;
         height: 132px;
-        top: 16px;
-        right: -16px;
-    }
-
-    /* セラムの成分名：少し小さくして、1行に収める */
-    .ingredients-list--serum .ingredient-name {
-        font-size: 14px;
+        /* 見出しの下あたりまで、下げる */
+        top: 640px;
+        right: -43px;
     }
 
     /* 成分の説明文：4つとも、名前の下の行に出す */
@@ -1319,6 +1320,39 @@ main {
         flex-basis: 100%;
         /* 左に36px空けて、名前の文字の頭にそろえる（アイコン24px＋すき間12px） */
         padding-left: 36px;
+        /* 説明文：14px → 12px */
+        font-size: 12px;
     }
 
+    /* ===== 文字の大きさ（ものさしにそろえる）===== */
+
+    /* 成分カードの見出し：20px → 16px */
+    .ingredients-title {
+        font-size: 16px;
+    }
+
+    /* 成分名：16px → 14px */
+    .ingredient-name {
+        font-size: 14px;
+    }
+
+    /* 成分の効果：13px → 12px */
+    .ingredient-effect {
+        font-size: 12px;
+    }
+
+    /* カード下の一言：14px → 12px */
+    .ingredients-note {
+        font-size: 12px;
+    }
+
+    /* セラムの説明の成分名：16px → 14px */
+    .ingredients-description dt {
+        font-size: 14px;
+    }
+
+    /* セラムの見出し：びんの右に動かす（びんの分の場所をあける） */
+    .product-serum .product-catch {
+        margin-left: 56px;
+    }
 }
