@@ -584,6 +584,15 @@ main {
     line-height: 1.4;
 }
 
+/* 成分の効果の前後に、全角のかっこを足す。HTMLは書きかえない */
+.ingredient-effect::before {
+    content: "（";
+}
+
+.ingredient-effect::after {
+    content: "）";
+}
+
 /* カード下の一言 */
 .ingredients-note {
     margin-top: 32px;
@@ -706,6 +715,15 @@ main {
 /* 効果（dd） */
 .ingredients-description dd {
     font-size: 14px;
+}
+
+/* 効果（dd）の前後に、全角のかっこを足す。HTMLは書きかえない */
+.ingredients-description dd::before {
+    content: "（";
+}
+
+.ingredients-description dd::after {
+    content: "）";
 }
 
 /* ----------------------------------------------------------
@@ -1295,7 +1313,8 @@ main {
         grid-column: auto;
         grid-row: auto;
         top: -11px;
-        right: 277px;
+        right: auto;
+        left: -24px;
         /* 透明な部分があるので、見たい大きさの2倍くらい */
         width: 89px;
         margin: 0;
@@ -1354,5 +1373,155 @@ main {
     /* セラムの見出し：びんの右に動かす（びんの分の場所をあける） */
     .product-serum .product-catch {
         margin-left: 56px;
+    }
+
+    /* ===== 7日間お試し ===== */
+
+    /* 丸いバッジ：小さくして、画像の左上にのせる */
+    .trial-badge {
+        width: 150px;
+        height: 150px;
+        top: -16px;
+        left: -12px;
+        font-size: 20px;
+    }
+
+    /* 価格とボタン：横に並べるのをやめて、上から下に並べる（1列にする） */
+    .trial-inner {
+        grid-template-columns: 1fr;
+    }
+
+    /* 価格の左右の余白を小さくする */
+    .trial-price {
+        padding: 0 8px;
+    }
+
+    /* 価格まわりの文字を、ものさしに合わせて小さくする */
+    .trial-price-original {
+        font-size: 12px;
+    }
+
+    .trial-price-label {
+        font-size: 16px;
+    }
+
+    .trial-price-value {
+        font-size: 32px;
+    }
+
+    .trial-price-value span {
+        font-size: 12px;
+    }
+
+    /* 申し込みボタン：横いっぱいにして、押しやすくする */
+    .trial-inner .accordion-trigger {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    /* 価格の後ろの桜：画面の中に戻して、小さくする */
+    .trial::after {
+        width: 100px;
+        height: 150px;
+        top: 220px;
+        /* PC用の right を取り消して、左から置く */
+        right: auto;
+        left: -24px;
+    }
+
+    /* ===== よくある質問 ===== */
+
+    /* 全体の左右の余白を小さくする */
+    .faq {
+        padding: 24px 8px 16px;
+    }
+
+    /* 見出しの文字：20px → 16px */
+    .faq-title {
+        font-size: 16px;
+    }
+
+    /* 質問のリスト：2列を1列にして、上から下へ並べる */
+    .faq-list {
+        grid-template-columns: 1fr;
+    }
+
+    /* 質問の文字：14px → 13px。左右の余白を少し小さくする */
+    .faq-question {
+        font-size: 13px;
+        padding: 12px 20px;
+    }
+
+    /* 答えの文字：14px → 13px */
+    .faq-answer {
+        font-size: 13px;
+        padding: 14px 20px;
+    }
+
+    /* ===== 開くフォーム（お試し・お問い合わせ）===== */
+
+    /* 箱の内側の余白を小さくする（上下20px、左右16px） */
+    .accordion-panel {
+        padding: 20px 16px;
+    }
+
+}
+
+/* ===== 幅が広いスマホ・タブレット（481px〜768px）用：飾りを大きくする ===== */
+@media (min-width: 481px) and (max-width: 768px) {
+
+    /* スプレーのカード：びんの列を広げる */
+    .product-spray .product-inner {
+        grid-template-columns: 1fr 180px;
+    }
+
+    /* びん：大きくする */
+    .product-spray .product-image {
+        width: 180px;
+        left: 32px;
+    }
+
+    /* 霧：ノズルの先に合わせる */
+    .product-spray .product-inner::before {
+        width: 240px;
+        height: 176px;
+        top: 14px;
+        right: 100px;
+    }
+
+    /* 後ろの桜の塊：大きくする */
+    .product-spray .product-inner::after {
+        width: 320px;
+        height: 429px;
+        bottom: -147px;
+        right: -48px;
+    }
+
+    /* 左上の大きな花びら：大きくする */
+    .product-spray::before {
+        width: 100px;
+        height: 105px;
+        top: -62px;
+        left: -26px;
+    }
+
+    /* セラムのびん：大きくして、見出しの左に置く */
+    .product-serum .product-image {
+        width: 142px;
+        top: -18px;
+        left: -38px;
+    }
+
+    /* セラムの見出し：大きくしたびんをよける */
+    .product-serum .product-catch {
+        margin-left: 90px;
+    }
+
+    /* 説明文：幅が広いときは、名前の横に戻す */
+    .ingredients-description dd {
+        /* flex-basis を元に戻す（auto＝中身の大きさのまま）→ 名前と同じ行に入る */
+        flex-basis: auto;
+        /* 左のすき間も、なしに戻す */
+        padding-left: 0;
     }
 }
