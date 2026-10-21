@@ -45,6 +45,8 @@
 /* ページ内リンク（#spray など）をスッと滑らかにスクロールさせる */
 html {
     scroll-behavior: smooth;
+    /* 横にはみ出した飾りで、ページが横にずれないように、はみ出しを切る */
+    overflow-x: hidden;
 }
 
 /* 画像：親の幅からはみ出さない。下に出る謎の隙間も消す */
@@ -272,12 +274,10 @@ main {
     /* 基準点(.product-spray)の中で、位置を自由に決める */
     position: absolute;
     /* マイナスの値は、親の外へはみ出す（上へはみ出す） */
-    top: -107px;
-    /* 左へはみ出す */
-    left: -67px;
-    /* 飾りの箱の大きさ */
-    width: 200px;
-    height: 210px;
+    top: -67px;
+    left: -2px;
+    width: 125px;
+    height: 168px;
     /* 花びらの画像。contain＝切らずに全体を収める */
     background-image: url("../images/deco-petal-big.png");
     background-size: contain;
@@ -302,7 +302,7 @@ main {
     /* 疑似要素に必須。空でOK */
     position: absolute;
     /* 親(.product-serum)を基準に置く */
-    top: 520px;
+    top: 620px;
     /* 親の上端から下へ（カードの下のほう） */
     right: -27px;
     /* マイナス＝親の右端より外側へはみ出す */
@@ -332,9 +332,9 @@ main {
     /* 親の上端から322px下 */
     left: -30px;
     /* マイナス＝親の左端より外側へはみ出す */
-    width: 180px;
+    width: 140px;
     /* 飾りの箱の幅 */
-    height: 217px;
+    height: 169px;
     /* 飾りの箱の高さ */
     background-image: url("../images/deco-bubble-petals.png");
     /* 泡+花びら2枚の画像 */
@@ -364,6 +364,8 @@ main {
    （.product-spray の中の .product-inner、という意味） */
 .product-spray .product-inner {
     background-color: var(--color-navy);
+    /* カードの外にはみ出した、びん・霧・桜を切る（ページが横に動くのを防ぐ） */
+    overflow: hidden;
 }
 
 /* キャッチコピー（h2） */
@@ -441,7 +443,7 @@ main {
     /* 流れから外して、好きな場所に置く */
     right: -9px;
     /* 右からの位置 */
-    bottom: 47px;
+    bottom: 7px;
     /* 下からの位置 */
     z-index: 2;
     /* 桜(0)より大きい数字 = 手前に出る */
@@ -456,7 +458,7 @@ main {
     /* 基準点（.product-inner）の中で、位置を自由に決める */
     position: absolute;
     /* カードの上から-41px、右から266px（スプレーのノズルの左側に霧が広がる） */
-    top: -41px;
+    top: -19px;
     right: 266px;
     width: 440px;
     height: 322px;
@@ -493,6 +495,7 @@ main {
 }
 
 
+
 /* ----------------------------------------------------------
    7. 成分カード（うす紫のカード）
    index.html の <div class="ingredients"> の見た目
@@ -519,9 +522,9 @@ main {
     /* 親の上端から20px下 */
     right: -24px;
     /* 右端の少し外へはみ出す */
-    width: 303px;
+    width: 240px;
     /* 飾りを入れる箱の幅 */
-    height: 250px;
+    height: 198px;
     /* 飾りを入れる箱の高さ */
     background-image: url("../images/deco-petals-8.png");
     /* 8枚の花びら画像 */
@@ -628,6 +631,26 @@ main {
 /* キャッチコピー：2列ぶんの幅をぜんぶ使う（1列目から最後の列まで） */
 .product-serum .product-catch {
     grid-column: 1 / -1;
+}
+
+/* 導入美容液の説明の箱：キャッチコピーと同じように、2列ぶんの幅を全部使う
+   （これを書かないと、左のマス1つに入って、びんが右に押し出される） */
+.serum-intro {
+    grid-column: 1 / -1;
+}
+
+/* 商品の種類（導入美容液）：少し小さく、文字の間を広げて上品に */
+.serum-type {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+}
+
+/* 説明文：種類との間を少しあける */
+.serum-text {
+    margin-top: 8px;
+    font-size: 14px;
+    /* 最後の行に、1〜2文字だけ残らないように、改行をきれいにする */
+    text-wrap: pretty;
 }
 
 .product-serum .product-image {
@@ -737,31 +760,7 @@ main {
     color: var(--color-black);
 }
 
-/* 価格の後ろに、8枚の花びらを飾る */
-.trial::after {
-    content: "";
-    /* 疑似要素に必須。空でOK */
-    position: absolute;
-    /* .trial を基準に置く */
-    top: 580px;
-    /* 上端から下へ（価格のあたり） */
-    right: 782px;
-    /* 右端から内側へ（価格の右側） */
-    width: 200px;
-    /* 飾りの箱の幅 */
-    height: 300px;
-    /* 飾りの箱の高さ */
-    background-image: url("../images/deco-petals-8.png");
-    /* 8枚の花びら */
-    background-size: contain;
-    /* 画像を切らずに収める */
-    background-repeat: no-repeat;
-    /* 繰り返さない */
-    pointer-events: none;
-    /* 下のボタンやリンクのクリックを邪魔しない */
-    transform: rotate(-60deg) scaleX(-1);
-    /* 左に傾けて、左右を反転する（transform は1行にまとめる） */
-}
+
 
 /* 丸い「7日間お試し」バッジ：画像の左上に重ねる */
 .trial-badge {
@@ -1314,7 +1313,7 @@ main {
         grid-row: auto;
         top: -11px;
         right: auto;
-        left: -24px;
+        left: -4px;
         /* 透明な部分があるので、見たい大きさの2倍くらい */
         width: 89px;
         margin: 0;
@@ -1326,11 +1325,10 @@ main {
     }
 
     .product-serum::after {
-        width: 110px;
-        height: 132px;
-        /* 見出しの下あたりまで、下げる */
-        top: 640px;
-        right: -43px;
+        width: 140px;
+        height: 168px;
+        top: 762px;
+        right: -58px;
     }
 
     /* 成分の説明文：4つとも、名前の下の行に出す */
@@ -1373,6 +1371,11 @@ main {
     /* セラムの見出し：びんの右に動かす（びんの分の場所をあける） */
     .product-serum .product-catch {
         margin-left: 56px;
+    }
+
+    /* 導入美容液の説明：真ん中ぞろえにする（びんから離れるので、よける必要がなくなる） */
+    .serum-intro {
+        text-align: center;
     }
 
     /* ===== 7日間お試し ===== */
@@ -1419,15 +1422,6 @@ main {
         font-size: 15px;
     }
 
-    /* 価格の後ろの桜：画面の中に戻して、小さくする */
-    .trial::after {
-        width: 100px;
-        height: 150px;
-        top: 220px;
-        /* PC用の right を取り消して、左から置く */
-        right: auto;
-        left: -24px;
-    }
 
     /* ===== よくある質問 ===== */
 
@@ -1478,7 +1472,7 @@ main {
     /* びん：大きくする */
     .product-spray .product-image {
         width: 180px;
-        left: 32px;
+        left: -16px;
     }
 
     /* 霧：ノズルの先に合わせる */
@@ -1486,7 +1480,7 @@ main {
         width: 240px;
         height: 176px;
         top: 14px;
-        right: 100px;
+        right: 148px;
     }
 
     /* 後ろの桜の塊：大きくする */
@@ -1497,25 +1491,36 @@ main {
         right: -48px;
     }
 
-    /* 左上の大きな花びら：大きくする */
+    /* 左上の大きな花びら：少し小さくする */
     .product-spray::before {
-        width: 100px;
-        height: 105px;
-        top: -62px;
-        left: -26px;
+        width: 80px;
+        height: 84px;
+        top: -52px;
+        left: -16px;
     }
 
-    /* セラムのびん：大きくして、見出しの左に置く */
+    /* 美容液のカード：2列にもどす（左：びん、右：成分の写真） */
+    .product-serum .product-inner {
+        grid-template-columns: 160px 1fr;
+        column-gap: 16px;
+    }
+
+    /* セラムのびん：成分の写真の左に置く（浮かせるのをやめて、流れの中にもどす） */
     .product-serum .product-image {
-        width: 142px;
-        top: -18px;
-        left: -38px;
+        /* static＝位置の指定なし。top や left は、効かなくなる */
+        position: static;
+        width: 160px;
+        margin: 0;
+        /* 右の成分の写真の、縦の真ん中にそろえる */
+        align-self: center;
     }
 
-    /* セラムの見出し：大きくしたびんをよける */
+    /* セラムの見出し：びんをよけなくてよいので、左はしにもどす */
     .product-serum .product-catch {
-        margin-left: 90px;
+        margin-left: 0;
     }
+
+
 
     /* 説明文：幅が広いときは、名前の横に戻す */
     .ingredients-description dd {
@@ -1523,5 +1528,85 @@ main {
         flex-basis: auto;
         /* 左のすき間も、なしに戻す */
         padding-left: 0;
+    }
+
+    /* ===== 成分カードの飾り（幅が広いときだけ、大きくする） ===== */
+
+    /* 右上の花びら：大きくする（右と上は同じ。左と下に広がる） */
+    .ingredients::before {
+        width: 144px;
+        height: 118px;
+    }
+
+    /* 左下の泡：大きくする。大きくなった分、上に少し上げて、中心の場所を同じにする */
+    .ingredients::after {
+        width: 112px;
+        height: 136px;
+        top: 307px;
+    }
+
+    /* ===== 導入美容液の説明：左ぞろえにして、びんの右に置く ===== */
+    .serum-intro {
+        /* 幅が小さいスマホでは真ん中にしたが、ここでは左ぞろえに戻す */
+        text-align: left;
+        /* びんをよけなくてよいので、左はしにもどす */
+        margin-left: 0;
+    }
+
+    /* ===== セラムの後ろの花びら：少し上げて、大きくする ===== */
+    .product-serum::after {
+        width: 180px;
+        height: 216px;
+        /* 下へ40px動かす（数字が大きいほど、下に行く） */
+        top: 600px;
+        /* 右のふちで切れないように、右へのはみ出しは小さめにする */
+        right: -40px;
+    }
+
+}
+
+
+/* ===== 481px〜600px（せまめのスマホ）だけ：スプレーと霧を小さくする ===== */
+
+/* ===== 481px〜600px（せまめのスマホ）だけ：スプレーと霧を小さくして、右に寄せる ===== */
+/* 上の481px〜768pxのブロックより、あとに書くので、この幅では、こちらが勝つ */
+@media (min-width: 481px) and (max-width: 600px) {
+
+    /* びん：中心はそのまま、85%に小さくして、右へ寄せる */
+    .product-spray .product-image {
+        /* 上のブロックの -16px から、30px右へ（-16 + 30 = 14） */
+        left: 14px;
+        /* transform は1行にまとめる */
+        transform: rotate(-15deg) scale(0.85);
+    }
+
+    /* 霧：小さくして、びんといっしょに30px右へ寄せる */
+    .product-spray .product-inner::before {
+        width: 180px;
+        height: 132px;
+        top: 42px;
+        /* right は、数字が小さいほど、右に行く（148 - 30 = 118） */
+        right: 118px;
+    }
+}
+
+/* ===== せまいPC画面（769px〜900px）用：霧を小さくして、左の文字にかぶらないようにする ===== */
+@media (min-width: 769px) and (max-width: 900px) {
+
+    /* 霧：先の位置は同じまま、左に伸びる部分を短くする（大きさを約70%にする） */
+    .product-spray .product-inner::before {
+        width: 270px;
+        height: 198px;
+        top: 22px;
+        right: 223px;
+    }
+}
+
+/* ===== 画面がせまいとき（1060px以下）：白いフレームからはみ出した飾りを切って、横に動かないようにする ===== */
+@media (max-width: 1060px) {
+
+    main {
+        /* clip：はみ出した部分を切る。hiddenとちがい、動かせる箱にならないので、横にずれない */
+        overflow-x: clip;
     }
 }

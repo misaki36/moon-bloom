@@ -118,6 +118,16 @@
         <section class="product product-serum" id="serum">
             <div class="product-inner">
                 <h2 class="product-catch">もう一滴の潤いを</h2>
+                <!-- 導入美容液の説明：名前と、だれ向けか・いつ使うかを伝える箱 -->
+                <div class="serum-intro">
+                    <!-- 商品の種類（名前） -->
+                    <p class="serum-type">導入美容液</p>
+                    <!-- 説明文。<br>は、そこで改行するタグ -->
+                    <p class="serum-text">
+                        もっとケアしたい人向け。<br>
+                        スプレーの前に使うと、そのあとのうるおいがしみこみやすくなります。
+                    </p>
+                </div>
                 <img src="images/serum-bottle.png" alt="Moon Bloom 導入美容液のボトル" class="product-image">
 
                 <ul class="ingredients-list ingredients-list--serum">
@@ -292,9 +302,6 @@
     </footer>
     <!--
     JSファイルは<body>の一番最後で読み込むのが基本。
-    理由:HTMLを先に全部読み込んでおかないと、JSが「操作したい要素」を
-    まだ見つけられず、エラーになることがあるため。
-    (JSの回で js/script.js を作って、このコメントを外す)
   -->
     <script src="js/script.js"></script>
 </body>
