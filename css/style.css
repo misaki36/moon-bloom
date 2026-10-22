@@ -86,7 +86,7 @@ body {
     line-height: 1.8;
     /* ページ全体の背景：Figmaの桜とシャボン玉の背景を敷く
     background-color の紺は、画像が読み込めないときの保険として残す */
-    background-image: url("../images/bg-page.png");
+    background-image: url("../images/bg-page.webp");
     overflow-x: hidden;
     /* 横にはみ出した飾りで、横スクロールが出ないようにする */
     /* cover：画面いっぱいに広げる。中央上を基準に見せる */
@@ -192,7 +192,7 @@ main {
        ②下：月の画像 */
     background-image:
         linear-gradient(90deg, rgba(26, 27, 58, 0.75) 0%, rgba(26, 27, 58, 0) 65%),
-        url("../images/fv-background.png");
+        url("../images/fv-background.webp");
     /* cover：画像を余白なく全面に広げる */
     background-size: cover;
     /* 画像の真ん中を基準に見せる */
@@ -279,7 +279,7 @@ main {
     width: 125px;
     height: 168px;
     /* 花びらの画像。contain＝切らずに全体を収める */
-    background-image: url("../images/deco-petal-big.png");
+    background-image: url("../images/deco-petal-big.webp");
     background-size: contain;
     background-repeat: no-repeat;
     /* 飾りの下にあるリンクやボタンを、クリックできるようにする */
@@ -310,7 +310,7 @@ main {
     /* 飾りの箱の幅 */
     height: 300px;
     /* 飾りの箱の高さ */
-    background-image: url("../images/deco-petals-4.png");
+    background-image: url("../images/deco-petals-4.webp");
     /* 4枚の花びら画像 */
     background-size: contain;
     /* 画像を切らずに箱へ収める */
@@ -336,7 +336,7 @@ main {
     /* 飾りの箱の幅 */
     height: 169px;
     /* 飾りの箱の高さ */
-    background-image: url("../images/deco-bubble-petals.png");
+    background-image: url("../images/deco-bubble-petals.webp");
     /* 泡+花びら2枚の画像 */
     background-size: contain;
     /* 画像を切らずに箱へ収める */
@@ -463,7 +463,7 @@ main {
     width: 440px;
     height: 322px;
     /* 霧の画像（背景を消した透明PNG）。contain＝切らずに全体を収める */
-    background-image: url("../images/deco-spray-mist.png");
+    background-image: url("../images/deco-spray-mist.webp");
     background-size: contain;
     background-repeat: no-repeat;
     /* 画像の右端（細い先端側）を、枠の右に寄せる */
@@ -486,7 +486,7 @@ main {
     width: 503px;
     /* 少し大きくして、スプレーの左右にはみ出させる */
     height: 709px;
-    background-image: url("../images/deco-flower.png");
+    background-image: url("../images/deco-flower.webp");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -526,7 +526,7 @@ main {
     /* 飾りを入れる箱の幅 */
     height: 198px;
     /* 飾りを入れる箱の高さ */
-    background-image: url("../images/deco-petals-8.png");
+    background-image: url("../images/deco-petals-8.webp");
     /* 8枚の花びら画像 */
     background-size: contain;
     /* 画像を切らずに箱の中へ収める */
@@ -773,7 +773,7 @@ main {
     height: 320px;
     /* シャボン玉の画像（背景を消した透明PNG）。
        contain＝切らずに全体を収める。no-repeat＝繰り返さない */
-    background-image: url("../images/syabondama.png");
+    background-image: url("../images/syabondama.webp");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
