@@ -1679,7 +1679,6 @@ main {
 
 
 /* ===== 481px〜600px（せまめのスマホ）だけ：スプレーと霧を小さくする ===== */
-
 /* ===== 481px〜600px（せまめのスマホ）だけ：スプレーと霧を小さくして、右に寄せる ===== */
 /* 上の481px〜768pxのブロックより、あとに書くので、この幅では、こちらが勝つ */
 @media (min-width: 481px) and (max-width: 600px) {
@@ -1694,9 +1693,9 @@ main {
 
     /* 霧：小さくして、びんといっしょに30px右へ寄せる */
     .product-spray .product-inner::before {
-        width: 180px;
-        height: 132px;
-        top: 42px;
+        width: 160px;
+        height: 117px;
+        top: 52px;
         /* right は、数字が小さいほど、右に行く（148 - 30 = 118） */
         right: 118px;
     }
