@@ -210,6 +210,12 @@ main {
     max-width: var(--content-width);
     margin: 0 auto;
     padding: 0 24px;
+    /* 左（文字）と右（画像）を、横にならべる */
+    display: flex;
+    /* 縦は、真ん中にそろえる */
+    align-items: center;
+    /* 文字と画像の間のすき間 */
+    gap: 24px;
 }
 
 /* ロゴ文字：英語フォントで大きく */
@@ -245,6 +251,55 @@ main {
 /* サブコピー */
 .fv-sub {
     font-size: 18px;
+}
+
+
+/* 左側の文字の箱：残りの幅を、全部使う */
+.fv-text {
+    flex: 1;
+    /* 中身が長くても、箱から、はみ出さないようにする */
+    min-width: 0;
+}
+
+/* 右側の商品画像 */
+.fv-products {
+    width: 460px;
+    /* 画面がせまいときは、画像が、半分より大きくならないようにする */
+    max-width: 50%;
+    /* HTMLに height="667" と書いたので、そのままだと、縦に伸びてしまう。
+       auto にすると、横の幅に合わせて、縦が自動で決まる */
+    height: auto;
+}
+
+/* 「7日間お試しはこちら」ボタン：下のほうのボタンと同じ、紫のカプセル型 */
+.fv-button {
+    /* a は、そのままだと、幅や上の余白が、効かない。inline-block にして効くようにする */
+    display: inline-block;
+    margin-top: 32px;
+    background: var(--gradient-button);
+    color: var(--color-white);
+    border-radius: 999px;
+    padding: 16px 32px;
+    font-size: 18px;
+    transition: opacity 0.2s;
+}
+
+/* マウスを乗せたとき：少し薄くする */
+.fv-button:hover {
+    opacity: 0.85;
+}
+
+/* キーボード（Tabキー）で選んだとき：金色の枠線で、今どこにいるか分かるようにする */
+.fv-button:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+}
+
+
+/* スマホ用のボタン：PCでは隠す。
+   上の .fv-button（display: inline-block）より、あとに書くので、この display: none が勝つ */
+.fv-button--sp {
+    display: none;
 }
 
 /* ----------------------------------------------------------
@@ -1173,6 +1228,13 @@ main {
 
     .fv-inner {
         padding: 0 16px;
+        /* 横ならびをやめて、縦にならべる（文字が上、画像が下） */
+        flex-direction: column;
+        /* 縦ならびのときは、横の位置は stretch（いっぱいに広げる）にする。
+           center にすると、文字の箱が中央によってしまい、左ぞろえがくずれる */
+        align-items: stretch;
+        /* 文字と画像の間のすき間 */
+        gap: 32px;
     }
 
     .fv-logo {
@@ -1184,7 +1246,40 @@ main {
     }
 
     .fv-sub {
-        font-size: 10px;
+        font-size: 12px;
+    }
+
+
+    /* 商品画像：スマホでは、横いっぱいに使う。大きくなりすぎないよう、420pxで止める */
+    .fv-products {
+        /* 画像だけ、横の位置を、中央にする（箱の中身は、左ぞろえのまま） */
+        align-self: center;
+        width: 100%;
+        /* PC用の max-width: 50% を、ここで上書きする */
+        max-width: 420px;
+    }
+
+    /* ボタン：スマホでは、少し小さくする */
+    .fv-button {
+        margin-top: 24px;
+        padding: 12px 24px;
+        font-size: 15px;
+    }
+
+
+    /* 左の文字の中のボタンは、隠す（.fv-text の中の .fv-button だけ） */
+    .fv-text .fv-button {
+        display: none;
+    }
+
+    /* 画像の下のボタンを出す。画像と同じ幅にそろえて、中央に置く */
+    .fv-button--sp {
+        display: block;
+        align-self: center;
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+        margin-top: 0;
     }
 
     /* ロゴとリンクの文字を、折り返さずに1行にする */
@@ -1628,6 +1723,20 @@ main {
     }
 }
 
+
+/* ===== 769px〜960px（せまいPC・タブレット）：FVの文字が、折り返さないように、少し小さくする ===== */
+@media (min-width: 769px) and (max-width: 960px) {
+
+    /* ロゴ：60px → 48px */
+    .fv-logo {
+        font-size: 48px;
+    }
+
+    /* キャッチコピー：40px → 30px */
+    .fv-catch {
+        font-size: 30px;
+    }
+}
 
 /* ===== 480px以下（小さなスマホ）：お試しセットの説明を、2行にする ===== */
 @media (max-width: 480px) {

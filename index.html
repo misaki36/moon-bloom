@@ -36,19 +36,31 @@
         <!-- ==================== FV(ファーストビュー) ==================== -->
         <section class="fv" id="fv">
             <div class="fv-inner">
-                <!-- Moon Bloomのロゴ(大きく表示) -->
-                <p class="fv-logo">Moon Bloom</p>
+                <!-- 左側の文字（ロゴ・キャッチコピー・ボタン）をまとめる箱 -->
+                <div class="fv-text">
+                    <!-- Moon Bloomのロゴ(大きく表示) -->
+                    <p class="fv-logo">Moon Bloom</p>
 
-                <!-- キャッチコピー。h1はページ全体で一番大事な見出しなので、1ページに1つだけ使う -->
-                <h1 class="fv-catch">
-                    夜に咲く<br>
-                    あなたのためのご褒美
-                </h1>
+                    <!-- キャッチコピー。h1はページ全体で一番大事な見出しなので、1ページに1つだけ使う -->
+                    <h1 class="fv-catch">
+                        夜に咲く<br>
+                        あなたのためのご褒美
+                    </h1>
 
-                <!-- <hr>：区切り線。意味的に「ここで話題が変わる」ことを示すタグ -->
-                <hr class="fv-divider">
+                    <!-- <hr>：区切り線。意味的に「ここで話題が変わる」ことを示すタグ -->
+                    <hr class="fv-divider">
 
-                <p class="fv-sub">忙しい毎日でもほっと一息を</p>
+                    <p class="fv-sub">忙しい毎日でもほっと一息を</p>
+                    <!-- 下の「7日間お試し」へ飛ぶボタン。href="#trial" は、同じページの #trial の場所へ移動する、ページ内リンク -->
+                    <a href="#trial" class="fv-button">7日間お試しはこちら</a>
+                </div>
+
+                <!-- FVの商品画像。最初の画面で、すぐ見える画像なので、loading="lazy" は付けない。
+                     width と height を書くと、読み込む前に場所が確保されて、ガタつかない -->
+                <img src="images/fv-products.webp" alt="通常サイズのオールインワンスプレーと導入美容液。それぞれ、シャボン玉の中に入っている" class="fv-products"
+                    width="1000" height="667">
+                <!-- スマホ用のボタン：画像の下に出す。PCでは、CSSで隠す（左の文字の中のボタンを使う） -->
+                <a href="#trial" class="fv-button fv-button--sp">7日間お試しはこちら</a>
             </div>
         </section>
 
