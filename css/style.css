@@ -53,6 +53,8 @@ html {
 img {
     max-width: 100%;
     display: block;
+    /* HTMLに書いた height で縦にのびないように、横の幅に合わせて自動で決める */
+    height: auto;
 }
 
 /* リンク：青い下線をやめて、周りの文字色を引き継ぐ */
